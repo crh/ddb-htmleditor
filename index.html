@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+  <head>
+    <title>Web Editor</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+<!--
+    <link rel="stylesheet" type="text/css" href="css/navigation.css"/>
+-->
+
+    <!-- WebDAV includes -->
+    <script type="text/javascript" src="webdav/webdav.js"></script>
+
+    <!-- tinymce includes -->
+    <script type="text/javascript" src="tinymce/jscripts/tiny_mce/tiny_mce.js" ></script>
+
+    <script type="text/javascript">
+        var fs = new WebDAV.Fs(getBaseURL());
+        var staticPath = "~admin/static/";
+	var url;
+
+	tinyMCE.init({
+          mode : "textareas",
+          theme : "advanced",
+          height : "600",
+          plugins : "fullpage,preview,save",
+          save_enablewhendirty : true,
+          save_onsavecallback : "saveFile",
+          theme_advanced_buttons3_add : "fullpage,preview,save",
+          theme_advanced_resizing : true
+        });
+
+        function deleteFile(name, url) {
+          if (confirm("Really delete " + name + "?")) {
+            var ed = tinyMCE.get("content");
+
+            ed.setProgressState(1);
+            window.setTimeout(function() {
+              var file = fs.file(url);
+
+              file.rm();
+              internalListDir(getLanguage());
+              ed.setProgressState(0);
+            }, 0);
+          }
+        }
+
+        function getBaseURL() {
+          return location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/";
+        }
+
+        function getLanguage() {
+          var languagePicker = document.getElementById("languagePicker");
+
+          return languagePicker.options[languagePicker.selectedIndex].value;
+        }
+
+        function getNewFileName() {
+          return document.getElementById("filename").value;
+        }
+
+        function listLanguages() {
+          var dir = fs.dir(staticPath);
+          var children = dir.children();
+          var div = document.getElementById("languages");
+          var select = document.createElement("select");
+
+          select.setAttribute("id", "languagePicker");
+          select.setAttribute("onchange", "javascript:listDir(getLanguage())");
+          select.setAttribute("size", "1");
+          for (index = 1; index < children.length; index++) {
+            if (children[index]) {
+              var option = document.createElement("option");
+              var fileParts = children[index].name.split("/");
+              var language = fileParts[fileParts.length - 1];
+
+              option.appendChild(document.createTextNode(language));
+              select.appendChild(option);
+            }
+            div.appendChild(select);
+          }
+        }
+
+        function internalListDir(language) {
+          var dir = fs.dir(staticPath + language);
+          var children = dir.children();
+          var div = document.getElementById("files");
+          var ul = document.createElement("ul");
+
+          // sort list
+          var sortedDir = [];
+          var sortedDirIndex = 0;
+
+          for (index = 1; index < children.length; index++) {
+            if (children[index]) {
+              sortedDir[sortedDirIndex++] = children[index];
+            }
+          }
+          sortedDir.sort(function(a,b){return a.name > b.name});
+
+          ul.setAttribute("id", "Navigation");
+          for (index = 0; index < sortedDir.length; index++) {
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            var fileParts = sortedDir[index].name.split("/");
+
+            // load file
+            a.setAttribute("href", "javascript:loadFile('" + sortedDir[index].url + "')");
+            a.setAttribute("id", "loadfile");
+            a.appendChild(document.createTextNode(fileParts[fileParts.length - 1]));
+            li.appendChild(a);
+
+            // delete file
+            a = document.createElement("a");
+            a.setAttribute("href", "javascript:deleteFile('" + sortedDir[index].name + "','" + sortedDir[index].url + "')");
+            a.setAttribute("id", "deletefile");
+            a.appendChild(document.createTextNode("delete"));
+            li.appendChild(a);
+            ul.appendChild(li);
+          } 
+          if (div.firstChild != null) {
+            div.replaceChild(ul, div.firstChild);
+          }
+          else {
+            div.appendChild(ul);
+          }
+        }
+
+        function listDir(language) {
+          var ed = tinyMCE.get("content");
+
+          ed.setProgressState(1);
+          window.setTimeout(function() {
+            internalListDir(language);
+            ed.setProgressState(0);
+          }, 0);
+        }
+
+        function loadFile(url) {
+          this.url = url;
+
+          var ed = tinyMCE.get("content");
+
+          ed.setProgressState(1);
+          window.setTimeout(function() {
+            var file = fs.file(url + "?random=" + new Date().getTime());
+
+            ed.setContent(file.read());
+            ed.setProgressState(0);
+          }, 0);
+        }
+
+        function newFile() {
+          var ed = tinyMCE.get("content");
+
+          ed.setContent("");
+          url = getBaseURL() + staticPath + getLanguage() + "/" + getNewFileName();
+        }
+
+	function saveFile() {
+          var ed = tinyMCE.get("content");
+
+          ed.setProgressState(1);
+          window.setTimeout(function() {
+            var file = fs.file(this.url);
+
+            file.write(ed.getContent());
+            internalListDir(getLanguage());
+            ed.setProgressState(0);
+          }, 0);
+	}
+
+        function writeToDiv(line, emphasize) {
+          var div = document.getElementById("files");
+          var textnode = document.createTextNode(line);
+          var newdiv = document.createElement('div');
+    
+          newdiv.appendChild(textnode);
+          if (emphasize) {
+            newdiv.style.color = 'red';
+          } else {
+            newdiv.style.color = 'blue';
+          };
+          div.appendChild(newdiv);
+        };
+    </script>
+  </head>
+
+  <body>
+    <p>
+      <div id="languages">
+        Language:
+        <script type="text/javascript">
+          listLanguages();
+        </script>
+      </div>
+    </p>
+    <p>
+      <div id="files">
+        <script type="text/javascript">
+          internalListDir("de");
+        </script>
+      </div>
+    </p>
+    <p>
+      New file name:
+      <input id="filename" type="text" onkeyup="javascript:newFile()" oncut="javascript:newFile()" onpaste=="javascript:newFile()"/>
+    <p>
+      <textarea name="content" cols="0" rows="50" style="width:100%"/>
+    </p>
+  </body>
+</html>
