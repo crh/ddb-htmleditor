@@ -17,7 +17,9 @@
     <script type="text/javascript">
         var fs = new WebDAV.Fs(getBaseURL());
         var staticPath = "~admin/static/";
-	var url;
+        // URL of the current file in editor
+        var currentFile;
+        var currentDir;
 
 	tinyMCE.init({
           mode : "textareas",
@@ -30,6 +32,32 @@
           theme_advanced_resizing : true
         });
 
+        function changeDir(url) {
+          var ed = tinyMCE.get("content");
+
+          ed.setProgressState(1);
+          window.setTimeout(function() {
+            internalListDir(fs.dir(url));
+            currentDir = url;
+            ed.setProgressState(0);
+          }, 0);
+        }
+ 
+        function deleteDir(name, url) {
+          if (confirm("Really delete " + name + "?")) {
+            var ed = tinyMCE.get("content");
+
+            ed.setProgressState(1);
+            window.setTimeout(function() {
+              var dir = fs.dir(url);
+
+              dir.rm();
+              internalListDir(fs.dir(staticPath + getLanguage()));
+              ed.setProgressState(0);
+            }, 0);
+          }
+        }
+ 
         function deleteFile(name, url) {
           if (confirm("Really delete " + name + "?")) {
             var ed = tinyMCE.get("content");
@@ -39,7 +67,7 @@
               var file = fs.file(url);
 
               file.rm();
-              internalListDir(getLanguage());
+              internalListDir(fs.dir(staticPath + getLanguage()));
               ed.setProgressState(0);
             }, 0);
           }
@@ -55,8 +83,88 @@
           return languagePicker.options[languagePicker.selectedIndex].value;
         }
 
+        function getNewDirName() {
+          return document.getElementById("dirname").value;
+        }
+
         function getNewFileName() {
           return document.getElementById("filename").value;
+        }
+
+        function internalListDir(url) {
+          currentDir = url;
+
+          var children = url.children();
+          var div = document.getElementById("files");
+          var ul = document.createElement("ul");
+
+          // sort list
+          var sortedDir = [];
+          var sortedDirIndex = 0;
+
+          for (index = 1; index < children.length; index++) {
+            if (children[index]) {
+              sortedDir[sortedDirIndex++] = children[index];
+            }
+          }
+          sortedDir.sort(function(a,b){return a.type > b.type || (a.type == b.type && a.name > b.name)});
+
+          ul.setAttribute("id", "Navigation");
+          for (index = 0; index < sortedDir.length; index++) {
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+            var fileParts = sortedDir[index].name.split("/");
+
+            li.appendChild(document.createTextNode("[" + sortedDir[index].type + "]" ));
+
+            if (sortedDir[index].type == "file") {
+              // load file
+              a.setAttribute("href", "javascript:loadFile('" + sortedDir[index].url + "')");
+              a.setAttribute("id", "loadfile");
+              a.appendChild(document.createTextNode(fileParts[fileParts.length - 1]));
+              li.appendChild(a);
+
+              li.appendChild(document.createTextNode(" "));
+
+              // delete file
+              a = document.createElement("a");
+              a.setAttribute("href", "javascript:deleteFile('" + sortedDir[index].name + "','" + sortedDir[index].url + "')");
+              a.setAttribute("id", "deletefile");
+            }
+            else {
+              // change directory
+              a.setAttribute("href", "javascript:changeDir('" + sortedDir[index].url + "')");
+              a.setAttribute("id", "changeDir");
+              a.appendChild(document.createTextNode(fileParts[fileParts.length - 1]));
+              li.appendChild(a);
+
+              li.appendChild(document.createTextNode(" "));
+
+              // delete directory
+              a = document.createElement("a");
+              a.setAttribute("href", "javascript:deleteDir('" + sortedDir[index].name + "','" + sortedDir[index].url + "')");
+              a.setAttribute("id", "deletedir");
+            }
+            a.appendChild(document.createTextNode("delete"));
+            li.appendChild(a);
+            ul.appendChild(li);
+          } 
+          if (div.firstChild != null) {
+            div.replaceChild(ul, div.firstChild);
+          }
+          else {
+            div.appendChild(ul);
+          }
+        }
+
+        function listDir(language) {
+          var ed = tinyMCE.get("content");
+
+          ed.setProgressState(1);
+          window.setTimeout(function() {
+            internalListDir(fs.dir(staticPath + language));
+            ed.setProgressState(0);
+          }, 0);
         }
 
         function listLanguages() {
@@ -81,63 +189,8 @@
           }
         }
 
-        function internalListDir(language) {
-          var dir = fs.dir(staticPath + language);
-          var children = dir.children();
-          var div = document.getElementById("files");
-          var ul = document.createElement("ul");
-
-          // sort list
-          var sortedDir = [];
-          var sortedDirIndex = 0;
-
-          for (index = 1; index < children.length; index++) {
-            if (children[index]) {
-              sortedDir[sortedDirIndex++] = children[index];
-            }
-          }
-          sortedDir.sort(function(a,b){return a.name > b.name});
-
-          ul.setAttribute("id", "Navigation");
-          for (index = 0; index < sortedDir.length; index++) {
-            var li = document.createElement("li");
-            var a = document.createElement("a");
-            var fileParts = sortedDir[index].name.split("/");
-
-            // load file
-            a.setAttribute("href", "javascript:loadFile('" + sortedDir[index].url + "')");
-            a.setAttribute("id", "loadfile");
-            a.appendChild(document.createTextNode(fileParts[fileParts.length - 1]));
-            li.appendChild(a);
-
-            // delete file
-            a = document.createElement("a");
-            a.setAttribute("href", "javascript:deleteFile('" + sortedDir[index].name + "','" + sortedDir[index].url + "')");
-            a.setAttribute("id", "deletefile");
-            a.appendChild(document.createTextNode("delete"));
-            li.appendChild(a);
-            ul.appendChild(li);
-          } 
-          if (div.firstChild != null) {
-            div.replaceChild(ul, div.firstChild);
-          }
-          else {
-            div.appendChild(ul);
-          }
-        }
-
-        function listDir(language) {
-          var ed = tinyMCE.get("content");
-
-          ed.setProgressState(1);
-          window.setTimeout(function() {
-            internalListDir(language);
-            ed.setProgressState(0);
-          }, 0);
-        }
-
         function loadFile(url) {
-          this.url = url;
+          this.currentFile = url;
 
           var ed = tinyMCE.get("content");
 
@@ -150,11 +203,26 @@
           }, 0);
         }
 
+        function newDir() {
+          var newDir = currentDir.url;
+          var dir = fs.dir(newDir + "/" + getNewDirName());
+
+          dir.mkdir();
+
+          var ed = tinyMCE.get("content");
+
+          ed.setProgressState(1);
+          window.setTimeout(function() {
+            internalListDir(fs.dir(newDir));
+            ed.setProgressState(0);
+          }, 0);
+        }
+
         function newFile() {
           var ed = tinyMCE.get("content");
 
           ed.setContent("");
-          url = getBaseURL() + staticPath + getLanguage() + "/" + getNewFileName();
+          currentFile = getBaseURL() + staticPath + getLanguage() + "/" + getNewFileName();
         }
 
 	function saveFile() {
@@ -165,7 +233,7 @@
             var file = fs.file(this.url);
 
             file.write(ed.getContent());
-            internalListDir(getLanguage());
+            internalListDir(fs.dir(staticPath + getLanguage()));
             ed.setProgressState(0);
           }, 0);
 	}
@@ -198,13 +266,19 @@
     <p>
       <div id="files">
         <script type="text/javascript">
-          internalListDir("de");
+          internalListDir(fs.dir(staticPath + "de"));
         </script>
       </div>
     </p>
     <p>
+      New directory name:
+      <input id="dirname" type="text"/>
+      <input type="button" value="create" onclick="javascript:newDir()"/>
+    </p>
+    <p>
       New file name:
-      <input id="filename" type="text" onkeyup="javascript:newFile()" oncut="javascript:newFile()" onpaste=="javascript:newFile()"/>
+      <input id="filename" type="text" onkeyup="javascript:newFile()" oncut="javascript:newFile()" onpaste="javascript:newFile()"/>
+    </p>
     <p>
       <textarea name="content" cols="0" rows="50" style="width:100%"/>
     </p>
