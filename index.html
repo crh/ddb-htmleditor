@@ -50,7 +50,7 @@
               var dir = getFs().dir(url);
 
               dir.rm();
-              internalListDir(getFs().dir(parentDir(dir)));
+              internalListDir(getFs().dir(getParentDir(dir)));
               ed.setProgressState(0);
             }, 0);
           }
@@ -93,6 +93,14 @@
           return document.getElementById("filename").value;
         }
 
+        function getParentDir(dir) {
+          var rootDir = getBaseURL() + staticPath;
+          var parentDir = dir.url.substring(0, dir.url.substring(0, dir.url.length - 2).lastIndexOf("/") + 1);
+
+          // remove double slashes when comparing
+          return parentDir.replace(/\/\//g, "/") == rootDir.replace(/\/\//g, "/") ? null : parentDir;
+        }
+
         function internalListDir(dir) {
           currentDir = dir;
 
@@ -114,13 +122,13 @@
           ul.setAttribute("id", "Navigation");
 
           // parent directory
-          var parent = parentDir(dir);
+          var parentDir = getParentDir(dir);
 
-          if (parent != null) {
+          if (parentDir != null) {
             var li = document.createElement("li");
             var a = document.createElement("a");
 
-            a.setAttribute("href", "javascript:changeDir('" + parent + "')");
+            a.setAttribute("href", "javascript:changeDir('" + parentDir + "')");
             a.setAttribute("id", "changeDir");
             a.appendChild(document.createTextNode("[...]"));
             li.appendChild(document.createTextNode("[" + dir.type + "]" ));
@@ -238,14 +246,6 @@
 
           ed.setContent("");
           currentFile = getFs().file(currentDir.url + "/" + getNewFileName());
-        }
-
-        function parentDir(dir) {
-          var rootDir = getBaseURL() + staticPath;
-          var parentDir = dir.url.substring(0, dir.url.substring(0, dir.url.length - 2).lastIndexOf("/") + 1);
-
-          // remove double slashes when comparing
-          return parentDir.replace(/\/\//g, "/") == rootDir.replace(/\/\//g, "/") ? null : parentDir;
         }
 
 	function saveFile() {
