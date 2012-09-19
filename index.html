@@ -215,8 +215,8 @@
           }
         }
 
-        function loadFile(file) {
-          currentFile = file;
+        function loadFile(url) {
+          currentFile = getFs().file(url);
 
           var ed = tinyMCE.get("content");
 
