@@ -15,7 +15,7 @@
     <script type="text/javascript" src="tinymce/jscripts/tiny_mce/tiny_mce.js" ></script>
 
     <script type="text/javascript">
-        var staticPath = "~admin/static/";
+        var staticPath = window.location + "../static/";
         // URL of the current file in editor
         var currentFile;
         var currentDir;
@@ -94,7 +94,7 @@
         }
 
         function getParentDir(dir) {
-          var rootDir = getBaseURL() + staticPath;
+          var rootDir = staticPath;
           var parentDir = dir.url.substring(0, dir.url.substring(0, dir.url.length - 2).lastIndexOf("/") + 1);
 
           // remove double slashes when comparing
