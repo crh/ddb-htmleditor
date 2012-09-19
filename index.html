@@ -15,7 +15,6 @@
     <script type="text/javascript" src="tinymce/jscripts/tiny_mce/tiny_mce.js" ></script>
 
     <script type="text/javascript">
-        var fs = new WebDAV.Fs(getBaseURL());
         var staticPath = "~admin/static/";
         // URL of the current file in editor
         var currentFile;
@@ -37,8 +36,7 @@
 
           ed.setProgressState(1);
           window.setTimeout(function() {
-            internalListDir(fs.dir(url));
-            currentDir = url;
+            internalListDir(getFs().dir(url));
             ed.setProgressState(0);
           }, 0);
         }
@@ -49,10 +47,10 @@
 
             ed.setProgressState(1);
             window.setTimeout(function() {
-              var dir = fs.dir(url);
+              var dir = getFs().dir(url);
 
               dir.rm();
-              internalListDir(fs.dir(staticPath + getLanguage()));
+              internalListDir(getFs().dir(staticPath + getLanguage()));
               ed.setProgressState(0);
             }, 0);
           }
@@ -64,10 +62,10 @@
 
             ed.setProgressState(1);
             window.setTimeout(function() {
-              var file = fs.file(url);
+              var file = getFs().file(url);
 
               file.rm();
-              internalListDir(fs.dir(staticPath + getLanguage()));
+              internalListDir(currentDir);
               ed.setProgressState(0);
             }, 0);
           }
@@ -75,6 +73,10 @@
 
         function getBaseURL() {
           return location.protocol + "//" + location.hostname + (location.port && ":" + location.port) + "/";
+        }
+
+        function getFs() {
+            return new WebDAV.Fs(getBaseURL());
         }
 
         function getLanguage() {
@@ -91,10 +93,10 @@
           return document.getElementById("filename").value;
         }
 
-        function internalListDir(url) {
-          currentDir = url;
+        function internalListDir(dir) {
+          currentDir = dir;
 
-          var children = url.children();
+          var children = dir.children();
           var div = document.getElementById("files");
           var ul = document.createElement("ul");
 
@@ -162,13 +164,13 @@
 
           ed.setProgressState(1);
           window.setTimeout(function() {
-            internalListDir(fs.dir(staticPath + language));
+            internalListDir(getFs().dir(staticPath + language));
             ed.setProgressState(0);
           }, 0);
         }
 
         function listLanguages() {
-          var dir = fs.dir(staticPath);
+          var dir = getFs().dir(staticPath);
           var children = dir.children();
           var div = document.getElementById("languages");
           var select = document.createElement("select");
@@ -189,23 +191,20 @@
           }
         }
 
-        function loadFile(url) {
-          this.currentFile = url;
+        function loadFile(file) {
+          currentFile = file;
 
           var ed = tinyMCE.get("content");
 
           ed.setProgressState(1);
           window.setTimeout(function() {
-            var file = fs.file(url + "?random=" + new Date().getTime());
-
-            ed.setContent(file.read());
+            ed.setContent(getFs().file(url + "?random=" + new Date().getTime()).read());
             ed.setProgressState(0);
           }, 0);
         }
 
         function newDir() {
-          var newDir = currentDir.url;
-          var dir = fs.dir(newDir + "/" + getNewDirName());
+          var dir = getFs().dir(currentDir.url + "/" + getNewDirName());
 
           dir.mkdir();
 
@@ -213,7 +212,7 @@
 
           ed.setProgressState(1);
           window.setTimeout(function() {
-            internalListDir(fs.dir(newDir));
+            internalListDir(currentDir);
             ed.setProgressState(0);
           }, 0);
         }
@@ -222,7 +221,7 @@
           var ed = tinyMCE.get("content");
 
           ed.setContent("");
-          currentFile = getBaseURL() + staticPath + getLanguage() + "/" + getNewFileName();
+          currentFile = getFs().file(currentDir.url + "/" + getNewFileName());
         }
 
 	function saveFile() {
@@ -230,10 +229,8 @@
 
           ed.setProgressState(1);
           window.setTimeout(function() {
-            var file = fs.file(this.url);
-
-            file.write(ed.getContent());
-            internalListDir(fs.dir(staticPath + getLanguage()));
+            currentFile.write(ed.getContent());
+            internalListDir(currentDir);
             ed.setProgressState(0);
           }, 0);
 	}
@@ -266,7 +263,7 @@
     <p>
       <div id="files">
         <script type="text/javascript">
-          internalListDir(fs.dir(staticPath + "de"));
+          internalListDir(getFs().dir(staticPath + "de"));
         </script>
       </div>
     </p>
