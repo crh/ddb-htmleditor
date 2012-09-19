@@ -112,6 +112,22 @@
           sortedDir.sort(function(a,b){return a.type > b.type || (a.type == b.type && a.name > b.name)});
 
           ul.setAttribute("id", "Navigation");
+
+          // parent directory
+          var parent = parentDir(dir);
+
+          if (parent != null) {
+            var li = document.createElement("li");
+            var a = document.createElement("a");
+
+            a.setAttribute("href", "javascript:changeDir('" + parent + "')");
+            a.setAttribute("id", "changeDir");
+            a.appendChild(document.createTextNode("[...]"));
+            li.appendChild(document.createTextNode("[" + dir.type + "]" ));
+            li.appendChild(a);
+            ul.appendChild(li);
+          }
+
           for (index = 0; index < sortedDir.length; index++) {
             var li = document.createElement("li");
             var a = document.createElement("a");
@@ -222,6 +238,14 @@
 
           ed.setContent("");
           currentFile = getFs().file(currentDir.url + "/" + getNewFileName());
+        }
+
+        function parentDir(dir) {
+          var rootDir = getBaseURL() + staticPath;
+          var parentDir = dir.url.substring(0, dir.url.substring(0, dir.url.length - 2).lastIndexOf("/") + 1);
+
+          // remove double slashes when comparing
+          return parentDir.replace(/\/\//g, "/") == rootDir.replace(/\/\//g, "/") ? null : parentDir;
         }
 
 	function saveFile() {
