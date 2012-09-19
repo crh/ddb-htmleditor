@@ -50,7 +50,7 @@
               var dir = getFs().dir(url);
 
               dir.rm();
-              internalListDir(getFs().dir(staticPath + getLanguage()));
+              internalListDir(getFs().dir(parentDir(dir)));
               ed.setProgressState(0);
             }, 0);
           }
