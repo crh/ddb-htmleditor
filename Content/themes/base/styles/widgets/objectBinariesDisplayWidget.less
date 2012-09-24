@@ -1,0 +1,223 @@
+﻿@import "../modules/less.less";
+
+// default widget styling
+div.objectBinariesDisplayWidget {
+
+    overflow: hidden;
+    margin-bottom: 1em;
+
+    padding: 10px;
+    background-color: #e6e6e6;
+
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+    ul.carousel {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    div.carouselContainer {
+        display: none;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            ul.mediaItems {
+                display: none;
+            }
+
+        }
+
+        div.wrapper {
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        div.noData {
+            margin: 0;
+            background-color: #fff;
+
+            div.mediaPlayerWidget {
+                width: auto;
+                position: static;
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        a,span.caption {
+            font-size: @font_14;
+            color: @copy;
+            display: block;
+            line-height: 27px;
+        }
+
+        li.image {
+
+            div.wrapper {
+                background-color: #fff;
+                cursor: pointer;
+
+                // inner shadow over image - cannot display an inset shadow directly on image
+                &:after {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 2;
+                    content: "";
+
+                    .boxShadow(inset 5px 5px 5px rgba(0,0,0,0.5));
+                }
+            }
+
+            img {
+                display: block;
+                margin: 0 auto;
+
+            }
+        }
+    }
+
+    div.controllerContainer {
+        display: none;
+        overflow: hidden;
+        position: relative;
+        width: 497px;
+
+        min-height: 150px;
+
+        button {
+            position: absolute;
+            top: 0;
+
+            width: 24px;
+            height: 118px;
+            background: transparent url("/Content/themes/base/icons/carouselControls.png") no-repeat;
+            background-color: #b4023b;
+            background-color: rgba(180,2,59,0.4);
+            box-shadow: none;
+            cursor: pointer;
+
+            text-indent: -999em;
+
+            &:hover {
+                background-color: rgba(180,2,59,0.7);
+            }
+
+            &[data-direction=left] {
+                left: 0;
+                background-position: 0 center;
+            }
+            &[data-direction=right] {
+                right: 0;
+                background-position: -24px center;
+            }
+
+            &[disabled] {
+                cursor: default;
+                background-color: #ccc;
+                background-color: rgba(192,192,192,0.6);
+            }
+        }
+    }
+
+    div.loading {
+        display: none;
+
+        background: transparent url("/Content/themes/base/icons/loader_small.gif") no-repeat center center;
+
+        text-align: center;
+        min-height: 280px;
+
+        color: @strong;
+        font-size: @font_18;
+        line-height: 24px;
+        font-style: italic;
+    }
+
+    ul.controller {
+        clear: left;
+
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+
+        li {
+            float: left;
+
+            &.selected {
+               // background-color: #fff;
+            }
+            &:first-child {
+
+                div,
+                span {
+                    padding-left: 9px;
+                }
+            }
+                
+            div {
+
+                padding: 9px 9px 9px 0;
+                background-color: #fff;
+
+                width: 100px;
+
+                img {
+                    display: block;
+                    //width: 100px;
+                    height: 100px;
+                    background-color: #000;
+                }
+            }
+
+            span {
+                display: block;
+                overflow: hidden;
+                max-width: 100px;
+            }
+
+            a {
+                font-size: @font_14;
+                color: @copy;
+                display: block;
+                line-height: 27px;
+            }
+        }
+    } 
+}
+
+// revised styling when JS is available
+body.js div.objectBinariesDisplayWidget {
+
+    div.carouselContainer,
+    div.controllerContainer,
+    div.loading {
+        display: block;
+    }
+    div.measureable {
+        position: absolute;
+        left: -999em;
+    }
+    ul.carousel {
+        display: none;
+    }
+}
+
+// revised styling in the context of the object display page
+div.objectWrapper div.objectBinariesDisplayWidget {
+    float: left;
+    width: 517px;
+    margin-right: 20px;
+}

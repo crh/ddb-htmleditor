@@ -1,0 +1,168 @@
+@import "../modules/less.less";
+
+.binaryViewer {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    background: #FFF;
+
+    & > div {
+        margin: auto;
+        background: #000;
+
+        &.binaryViewerError {
+            background: transparent;
+        }
+    }
+
+    li {
+        background: transparent;
+    }
+
+    img, video {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .jplayer {
+        position: relative;
+    }
+
+    .jp-interface {
+        position: relative;
+        background: transparent url("/Content/themes/base/bg/mediaplayer_bg.png") repeat-x center center;
+        width: 445px;
+        height: 35px;
+    }
+
+    .jp-progress {
+        background: #545454;
+        position: absolute;
+        left: 26px;
+        top: 16px;
+        width: 267px;
+        height: 6px;
+    }
+
+    .jp-seek-bar {
+        background: url("/Content/themes/base/bg/mediaplayer_bars.png") 0 0 no-repeat;
+        width: 0px;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .jp-play-bar {
+        background: url("/Content/themes/base/bg/mediaplayer_playhead.png") right 0 no-repeat;
+        height: 12px;
+        position: relative;
+        top: -2px;
+    }
+
+    .jp-seeking-bg {
+        background: url("/Scripts/JQuery/JPlayer/skin/pbar-ani.gif");
+    }
+
+    .jp-controls-holder {
+        text-indent: -999em;
+
+        .jp-controls {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                display: inline;
+            }
+            a {
+                position: absolute;
+                overflow: hidden;
+                text-indent:-9999px;
+            }
+        }
+
+        .jp-play,
+        .jp-pause {
+            width: 22px;
+            height: 22px;
+            z-index: 1;
+
+            left: 10px;
+            top: 8px;
+
+            background: url("/Content/themes/base/icons/mediaplayer_controls.png") -7px -7px no-repeat;
+        }
+
+        .jp-pause {
+            background-position: -7px -43px;
+        }
+
+        .jp-stop {
+            display: none;
+        }
+
+        .jp-mute,
+        .jp-unmute {
+            width: 20px;
+            height: 20px;
+
+            top: 10px;
+            left: 373px;
+
+            background: url("/Content/themes/base/icons/mediaplayer_controls.png") -80px -8px no-repeat;
+        }
+        .jp-unmute {
+            background-position: -80px -44px;
+        }
+    }
+
+    div.jp-volume-bar {
+        position: absolute;
+        background: url("/Content/themes/base/bg/mediaplayer_bars.png") 0 -12px no-repeat;
+
+        width: 40px;
+        height: 4px;
+
+        top: 17px;
+        left: 395px;
+
+        cursor: pointer;
+
+        div.jp-volume-bar-value {
+            background: url("/Content/themes/base/icons/mediaplayer_controls.png") right -13px repeat-x;
+            min-width: 6px;
+            height: 13px;
+            position: relative;
+            top: -3px;
+        }
+    }
+
+    div.jp-current-time,
+    div.jp-duration {
+        position: absolute;
+        font-size: @font_12;
+
+        color: #fff;
+
+        top: 12px;
+        left: 305px;
+
+        width: 60px;
+    }
+    div.jp-current-time {
+        text-align: left;
+    }
+    div.jp-duration {
+        text-align: right;
+        color: @nav_border;
+    }
+}
+
+.nojs .binaryViewer {
+    display: none;
+}

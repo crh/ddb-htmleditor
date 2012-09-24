@@ -1,0 +1,237 @@
+﻿@import "less.less";
+
+// common styling for results listings (search/collections)
+
+div.printSummary {
+    display: none;
+}
+
+// default facet results
+div.facetResults {
+    float: left;
+    position: relative;
+    
+    width: 225px;    
+    max-width: 230px;
+
+    .contextualHelp {
+        position: absolute;
+        right: 0px;
+        top: 14px;
+    }
+}
+
+// default search results
+div.searchResults {
+    clear: both;
+
+    ul {
+        list-style: none outside none;
+        margin: 0;
+        padding: 0;
+
+        input[type=checkbox] {
+			//float: left;
+			//margin-top: 4px;
+            position: absolute;
+            top: 0px;
+		}
+            
+		div.buttons {
+			margin-left: 24px;
+            float: left;
+		}
+	}
+
+    .item {
+        clear: both;
+        min-height: 105px;
+        position: relative;
+
+        .title {
+            padding: 0;
+            margin: 0;
+            line-height: 1.1em;
+            overflow: hidden;
+            max-height: 2.2em; /*2 lines*/
+
+            a {
+                font-weight: normal;
+                word-wrap: break-word;
+				font-size: 22px;
+            }
+
+			a:hover {
+			
+				color: #a5003b;
+			}
+        }
+
+        .subtitle {
+            font-size: 17px;
+            font-family: @font_stack;
+            line-height: 1em;
+            margin: 7px 0 0;
+            color: @copy;
+            margin-top: 3px;
+            word-wrap: break-word;
+        }
+                    
+        .thumbnail {
+            position: absolute;
+            top: 0;
+            right: 24px;
+            width: 140px;
+            height: 105px;
+            text-align: center;
+            /* overflow: hidden; */
+
+            a {
+                position: relative;
+                text-align: center;
+                margin: auto;
+                width: 140px;
+                height: 105px;
+                display: table-cell;
+                vertical-align: middle;
+
+				&:focus {
+				
+					border: 1px dotted #A5003B;
+				
+				}
+            }
+
+            img {
+                max-width: 140px;
+                max-height: 105px;
+                display: block;
+                float: none;
+                border: 0;
+                margin: auto;
+
+				
+
+            }
+
+            div {
+                width: 100%;
+                height: 100%;
+
+                &.unknown {
+                    background: url("/Content/themes/base/icons/search_result_media_unknown.png") no-repeat center;
+                }
+
+                &.text, &.document {
+                    background: url("/Content/themes/base/icons/search_result_media_text.png") no-repeat center;
+                }
+
+                &.audio {
+                    background: url("/Content/themes/base/icons/search_result_media_audio.png") no-repeat center;
+                }
+
+                &.video {
+                    background: url("/Content/themes/base/icons/search_result_media_video.png") no-repeat center;
+                }
+
+                &.image {
+                    background: url("/Content/themes/base/icons/search_result_media_image.png") no-repeat center;
+                }
+
+                a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        
+        .summaryWrapper {
+            display: block;
+        }
+    }
+
+    .extra {
+        display:block;
+        margin: 0 auto;
+        padding: 12px 170px 0 0;
+        height: 19px;
+
+        .types {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    .divider {
+        clear: both;
+        display: inline-block;
+        float: left;
+        margin-left: 0px;
+        width: 100%;
+        height: 40px;
+        overflow: hidden;
+    }
+
+    hr {
+        padding: 0;
+        margin: 20px 0;
+        border: 0;
+        line-height: 0;
+        height: 1px;
+        color: #E9E5E2;
+        background-color: #E9E5E2;
+    }
+
+    ul.types {
+        margin: 0;
+        padding: 0;
+
+        li {
+            clear: none;
+            float: left;
+            min-height: 0;
+            margin: 0 4px 0 0;
+            width: 19px;
+            height: 19px;
+            text-indent: -999em;
+            background: url("/Content/themes/base/icons/result_types.png") no-repeat center top;
+
+            &.unknown {
+                background-position: 0 0;
+            }
+            &.video {
+                background-position: 0 -19px;
+            }
+            &.image {
+                background-position: 0 -38px;
+            }
+            &.document, &.text {
+                background-position: 0 -57px;
+            }
+            &.audio {
+                background-position: 0 -95px;
+            }
+            &.kultur {
+                background-position: 0 -114px;
+            }
+            &.news {
+                background-position: 0 -133px;
+            }
+            &.ausstellung {
+                background-position: 0 -152px;
+            }
+            &.portraitseite {
+                background-position: 0 -171px;
+            }
+            &.institution  {
+                background-position: 0 -190px;
+            }
+
+        }
+    }
+}
+
+.js.advSearch #resultsWrapper {
+    display: none;
+}

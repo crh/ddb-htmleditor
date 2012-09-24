@@ -1,0 +1,83 @@
+﻿@import "../modules/less.less";
+
+// default widget style
+div.languageWidget {
+    z-index: 1;
+    
+    form {
+        padding-top: 1em;
+    }
+
+    label {
+        float: left;
+        margin-right: 0.5em;
+        span {
+            float: left;
+            margin-right: 1em;
+            display: block;
+            line-height: 24px;
+        }
+    }
+
+    ul.selector {
+
+        font-size: @font_13;
+        display: none;
+
+        background-color: #fff;
+        padding: 5px 12px 7px;
+        border: 1px solid @results_border;
+		z-index: 1;
+		
+		width: 50px;
+
+		position: absolute;
+		right: 0;
+		top: 14px;
+
+        .boxShadow;
+
+        li {
+            float: none;
+            cursor: pointer;
+            padding: 0 15px 0 0;
+            margin-bottom: 5px;
+            white-space: nowrap;
+
+            &:hover {
+                color: @link_active;
+            }
+
+            &.selected {
+                cursor: default;
+                background-color: #eee;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }	
+}
+
+// revised styling in the context of the header
+header div.languageWidget,
+div.header div.languageWidget {
+    width: 980px;
+    margin: 0 auto;
+    position: absolute;
+    top: 0;
+
+    form {
+        display: none;
+    }
+}
+
+.ie7 div.languageWidget ul.selector {
+
+	top:14px;
+
+	right: 210px;
+
+
+}

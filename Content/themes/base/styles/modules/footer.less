@@ -1,0 +1,83 @@
+﻿@import "less.less";
+
+// default header styling
+footer,
+div.footer {
+
+    width: 100%;
+    background-color: #fff;
+    padding: 20px 0 70px 0;
+    clear: both;
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    div.inner {
+        width: 980px;
+        margin: 0 auto;
+    }
+
+    div.legal {
+
+        font-size: @font_13;
+        color: @copy;
+
+        div.inner {
+            border-top: 1px solid @results_border;
+            padding-top: 24px;
+            overflow: hidden;
+        }
+
+        small {
+            float: left;
+            font-size: 1em;
+            margin-right: 35px;
+        }
+
+        ul {
+           
+            li {
+                float: left;
+                padding-right: 17px;
+            }
+
+            li+li {
+                border-left: 1px solid @nav_border;
+                padding-left: 17px;
+            }
+        }
+    }    
+}
+
+// revised styling in the context of infiniteScrollMode
+body.infiniteScrollMode footer,
+body.infiniteScrollMode div.footer {
+
+    position: fixed;
+    bottom: 0;
+    z-index: 2;
+
+    padding-bottom: 20px;
+
+    nav,
+    div.sponsors {
+        display: none;
+    }
+
+    div.legal div.inner {
+        border-top: 1px solid @results_border;
+    }
+
+    &:hover {
+        nav {
+            display: block;
+        }
+    }
+}

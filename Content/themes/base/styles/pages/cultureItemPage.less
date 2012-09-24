@@ -1,0 +1,211 @@
+@import "../modules/less.less";
+
+.cultureItemPage {
+    .institution {
+        overflow: hidden;
+		font-size: 15px;
+		
+		a {
+			color: @copy;
+			display: block;
+
+			&:hover {
+				color: #a5003b;
+			}
+		}
+
+        & > div {
+            float: left;
+            width: 800px;
+
+			span {
+				display: block;			
+			}
+
+			a.institutionName {
+				padding-left: 17px;
+				height: 25px;
+				line-height: 20px;
+				background: url("/Content/themes/base/icons/list_arrows.png") no-repeat 0px 0px;	
+				
+				&:hover {
+					color: #a5003b;
+				}	
+			}
+        }
+
+        & > a > img {
+            float: right;
+            max-width: 140px;
+        }
+
+        .institutionName {
+            margin: 0.1em 0;
+            font-weight: bold;
+			font-size: 17px;
+			color: @copy;
+        }
+
+		.provider {
+			color: @copy;
+		}
+    }
+
+    .originHeader {
+        font-weight: bold;
+    }
+
+    .origin {
+        span {
+            background: url("/Content/themes/base/icons/objectviewer_actions.png") no-repeat;
+            display: inline-block;
+            padding-left: 25px;
+            line-height: 20px;
+            background-position: 0 -120px;
+
+            &.hasOrigin {
+                background-position: 0 -80px;
+            }
+        }
+    }
+
+	.binaryTitle {
+		padding-top: 7px;
+		font-color: @copy;
+	}
+
+    .binaryViewerError {
+        display: none;
+        position: relative;
+        width: 100%;
+        height: 320px;
+        background: #FFF;
+
+        p {
+            padding: 20px;
+            margin: 0;
+
+            a {
+                color: @link_active;
+                text-decoration: underline;
+            }
+        }
+
+        .errorHeader {
+            font-size: 16px;
+            font-weight: bold;
+            padding-bottom: 0;
+            font-style: italic;
+			color: @copy;
+        }
+
+        .mediaFile {
+            margin-right: 3px;
+        }
+    }
+
+    .relatedObjects {
+        position: relative;
+
+        h5 {
+            position: absolute;
+            text-align: center;
+            font-size: @font_17;
+            font-weight: normal;
+            color: #9e9b9a;
+            background-color: @extraLightBackground;
+            width: 200px;
+            height: 26px;
+            margin: 0;
+            padding: 8px 0 0 0;
+
+            &.selected {
+                color: @copy;
+                background-color: #FFF;
+                z-index: 1;
+                height: 27px;
+                border: 1px solid @extraLightBackground;
+                border-width: 1px 1px 0 1px;
+            }
+
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        }
+
+        .tab {
+            position: relative;
+            top: 34px;
+        }
+
+        .advancedNavigationWidget {
+            display: block;
+        }
+    }
+}
+
+div.objectDisplayWidget {
+    &.cultureItemPage {
+		
+		color: @copy;
+		
+        dl {
+            padding: 0 0 10px 0;
+            overflow:hidden;
+        }
+
+        dt, dd {
+            float: left;
+            font-size: @font_15;
+        }
+
+        dt {
+            clear: both;
+            width: 200px;
+        }
+
+        dd {
+            margin: 0;
+            width: 780px;
+        }
+
+        &.hasBanaries {
+            .institution {
+                & > div {
+                    float: left;
+                }
+            }
+
+            dt {
+                width: 160px;
+            }
+
+            dd {
+                width: 324px;
+            }
+        }
+    }
+}
+
+.fancybox-toolbar {
+	background-color: @extraLightBackground;
+	padding: 5px;
+}
+
+.fancybox-toolbar-close {
+	float: right;
+	width: 18px;
+	height: 18px;
+	background: url("/Content/themes/base/icons/adv_search_row_actions.png") no-repeat left -60px;
+
+	&:hover {
+		background-position: left -80px;
+	}
+}
+
+.ie7 .fancybox-toolbar-close {
+		position: absolute;
+		top: 5px;
+		right:5px;
+}

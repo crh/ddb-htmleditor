@@ -1,0 +1,255 @@
+﻿@import "../modules/less.less";
+
+form {
+
+    fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0 0 2.5em 0;
+
+        position: relative;
+    }
+
+    legend {
+        font-size: @font_15;
+        color: @strong;
+        float: left;
+
+        margin: 0 0 1em 0;
+        padding: 0;
+    }
+
+    div.required {
+        font-size: @font_14;
+        line-height: 23px;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        color: @copy;
+    }
+
+    label {
+        display: block;
+        clear: left;
+        color: @copy;
+
+        font-size: @font_15;
+
+        margin: 0 0 5px 0;
+
+        span {
+            display: block;
+            margin-bottom: 3px;
+
+            a {
+                color: #333;
+                text-decoration: underline;
+            }
+        }
+
+        input[type=checkbox]>span {
+            font-size: @font_13;
+        }
+
+        &.labelNoPadding {
+            margin: -5px 0 5px 0;
+        }
+    }
+
+    input {
+        width: 280px;
+        margin: 0 0 5px 0;
+
+        &[type=checkbox] {
+            width: auto;
+            margin-right: 4px;
+        }
+    }
+}
+
+
+input {
+	color: @input_text;
+    font-size: @font_15;
+    line-height: 23px;
+    padding: 0 5px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 280px;
+    height: 26px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 6px;
+    border: none;
+}
+
+textarea {
+    color: @input_text;
+    font-size: @font_15;
+    line-height: 20px;
+    padding: 0 0 0 5px;
+}
+
+button,
+input[type="button"],
+input[type="submit"] {
+    color: @copy;
+    font-size: @font_15;
+    font-weight: bold;
+    border: none;
+    background: #ec0a3c url("/Content/themes/base/bg/primary_button_bg.png") repeat-x bottom center; 
+    margin: 0;
+    padding: 2px 10px;
+    cursor: pointer;
+    height: 25px;
+    line-height: 14px;
+    .textShadow; 
+    .boxShadow;
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+    background-position: top center;
+}
+
+button[disabled],
+input[type="button"][disabled],
+input[type="submit"][disabled] {
+    background: #999 url("/Content/themes/base/bg/primary_button_bg_disabled.png") repeat-x bottom center;
+    cursor: default;
+}
+
+input {
+    color: @input_text;
+    font-family: @font_stack;
+
+    font-size: @font_15;
+
+    padding: 0 5px;
+
+    border: 1px solid;
+    border-color: #858280 #dcdbda #dcdbda #858280;
+    .boxShadow(inset 1px 1px 2px rgba(0,0,0,0.3));
+
+    // correction for firefox adding padding to declared element width
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+    &[type=text],
+    &[type=password] {
+        height: 26px;
+        line-height: 23px;
+    }
+
+    // prevent IE from being an idiot
+    &[type=checkbox],
+    &[type=radio] {
+        border: none;
+        .boxShadow(none);
+    }
+}
+
+textArea {
+    color: @input_text;
+    font-family: @font_stack;
+
+    font-size: @font_15;
+
+    padding: 0 5px;
+    margin: 0;
+
+    border: 1px solid;
+    border-color: #858280 #dcdbda #dcdbda #858280;
+    /* .boxShadow(inset 1px 1px 2px rgba(0,0,0,0.3)); */
+
+    // correction for firefox adding padding to declared element width
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+    resize: vertical;
+}
+
+select {
+    font-family: @font_stack;
+
+    font-size: @font_15;
+    height: 25px;
+
+    border: 1px solid;
+    border-color: #858280 #dcdbda #dcdbda #858280;
+}
+
+button {
+
+    border: none;
+    //background: #ec0a3c url("/Content/themes/base/bg/primary_button_bg.png") repeat-x bottom center;
+    font-family: @font_stack;
+    font-size: @font_15;
+    font-weight: bold;
+
+    height: 25px;
+    line-height: 25px;
+    padding: 0;
+
+    color: #fff;
+
+    cursor: pointer;
+
+    /* .boxShadow; */
+
+    span {
+        display: block;
+        line-height: 25px;
+        padding: 0 27px 0 10px;
+
+        position: relative;
+        top: -1px;
+
+        .textShadow;    
+    }
+
+    &.prev span {
+        background-position: 0 -24px;
+        padding: 0 10px 0 27px;
+    }
+
+    &:hover {
+        background-position: top center;
+    }
+
+    &[disabled] {
+        background: #999 url("/Content/themes/base/bg/primary_button_bg_disabled.png") repeat-x bottom center;
+        cursor: default;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+button::-moz-focus-inner {
+    margin: 0;
+    padding: 0; 
+}
+
+.error {
+    color: #ae013b;
+    font-weight: bold;
+}
+
+span.required,
+span.validationMessage {        
+    color: #ae013b;
+    display: inline;
+}
+span.validationMessage {
+    display: block;
+    clear: left;
+}

@@ -1,0 +1,225 @@
+﻿@import "less.less";
+
+// default header styling
+header,
+div.header {
+
+    background: transparent url("/Content/themes/base/bg/back_header.png") no-repeat center bottom;
+    width: 100%;
+    height: 160px;
+    margin-bottom: 20px;
+
+    img.printLogo {
+        display: none;
+    }
+
+    a.navigationHeaderLogo {
+        float: left;
+        height: 85px;
+        width: 350px;
+		border: 0px;
+		padding:0px;
+        overflow: hidden;
+
+		&:focus, &:hover, &:active {
+			background: #fff;
+			color: #ff6c6c;
+		}
+
+		.siteLogo {
+			p {
+				text-indent: -9999px;
+			}
+		}
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            float: left;
+
+            &.active a {
+                color: @link_active;
+                font-weight: bold;
+            }
+        }
+
+        &.navigation {
+            text-transform: uppercase;
+            clear: left;
+
+            li {
+                padding-right: 20px;
+                margin-left: 0;
+                position: relative;
+
+                &.active ul {
+                    display: block;
+                }
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
+
+            ul {
+                position: absolute;
+                display: none;
+                top: 22px;
+                left: 0;
+                text-transform: none;
+                width: auto;
+                min-width: 600px;
+
+                li {
+                    padding-right: 16px;
+                    border-top: 1px solid @results_border;
+                    float: none;
+                    display: inline;
+
+                    &.active a {
+                        color: @link_active;
+                        font-weight: bold;
+                    }
+                }
+                a {
+                    color: @link;
+                    font-weight: normal;
+                    font-size: @font_15;
+                }
+            }
+
+            a {
+                color: @link;
+                padding-bottom: 3px;
+
+				&:hover, &:active, &:focus {
+					color: @link_active;
+				}
+            }
+        }
+
+        &.toolbar,
+        &.login {
+            float: right;
+            font-size: @font_13;
+            padding-top: 10px;
+			margin-top: -70px;
+	
+
+            li {
+                padding: 0 12px;
+            }
+
+            li+li {
+                border-left: 1px solid @nav_border;
+            }
+
+            a {
+                background: transparent url("/Content/themes/base/icons/aux_nav_icons.png") no-repeat -20px 0;
+
+                &.home {
+                    background-position: 0 -4px;
+                    padding-left: 17px;
+                }
+
+                &.help {
+                    background-position: 0 -23px;
+                    padding-left: 13px;
+                    cursor: help;
+                }
+
+                &:hover {
+                    text-decoration: underline;
+					color: #A5003B;
+                }
+
+
+            }
+
+            li.language {
+                border-left: none;
+
+                &.loggedin {
+                    border-left: 1px solid @nav_border;
+                }
+
+                a {
+					float: left;
+					background-position: right -42px;
+					padding-right: 15px;
+
+					&:focus {
+                    text-decoration: underline;
+					color: #A5003B;
+                }
+
+                }
+            }
+        }
+
+        &.login {
+            padding-left: 30px;
+            display: none;
+
+            li+li {
+                padding-right: 0;
+            }
+
+            li.user {
+                border: none;
+                padding-right: 8px;
+            }
+        }
+    }
+
+    nav,
+    div.nav {
+        width: 980px;
+        margin: 0 auto;
+    }
+}
+
+body.js header nav ul.navigation li.active ul,
+body.js div.header div.nav ul.navigation li.active ul {
+    display: none;
+}
+
+body.js ul.login {
+    display: block;
+}
+
+// root/homepage is a special case, hide in non-js unless it is active
+body.nojs header nav ul.navigation li.root ul li {
+    display: none;
+}
+
+body.nojs header nav ul.navigation li.root ul li.active {
+    display: inline;
+}
+
+
+// revised styling in the context of the start page
+body.start header,
+body.start div.header {
+    height: 85px;
+    margin-bottom: 0px;
+
+    a.navigationHeaderLogo {
+        display: none;
+    }
+
+    ul.navigation {      
+        padding-top: 10px;
+    }
+
+	ul.toolbar {
+	
+		margin: 0px;
+
+	}
+
+
+}

@@ -1,0 +1,106 @@
+// LESS variables
+@import "modules/less.less";
+
+// LESS mixins
+.borderRadius(@params: 5px) {
+    border-radius: @params;
+    -moz-border-radius: @params;
+    -webkit-border-radius: @params;
+}
+
+.borderRadiusModal(@params: 5px) {
+    border-radius: @params;
+    -moz-border-radius: @params;
+    -webkit-border-radius: @params;
+}
+
+.boxShadow(@params: 1px 1px 2px rgba(0,0,0,0.5)) {
+    box-shadow: @params;
+    -moz-box-shadow: @params;
+    -webkit-box-shadow: @params;
+}
+
+.textShadow(@params: 1px 1px 2px rgba(0,0,0,0.5)) {
+    text-shadow: @params;
+    -moz-text-shadow: @params;
+    -webkit-text-shadow: @params;
+}
+
+.gradient(@origin: left, @start: #EFEBE8, @stop: #DCD4D1) {
+	background-color: @start;
+	background-image: -webkit-linear-gradient(@origin, @start, @stop);
+	background-image: -moz-linear-gradient(@origin, @start, @stop);
+	background-image: -o-linear-gradient(@origin, @start, @stop);
+	background-image: -ms-linear-gradient(@origin, @start, @stop);
+	background-image: linear-gradient(@origin, @start, @stop);
+}
+
+.opacity(@opacity: 0.5) {
+  -moz-opacity: @opacity;
+  -khtml-opacity: @opacity;
+  -webkit-opacity: @opacity;
+  opacity: @opacity;
+}
+
+// widgets
+div.widget {
+    position: relative;
+}
+
+// common element level declarations
+@import "modules/elements.less";
+// forms
+@import "modules/forms.less";
+// page header
+@import "modules/header.less";
+// page footer
+@import "modules/footer.less";
+
+// page layout - TO TIDY
+@import "modules/layout.less";
+
+// generic paginator
+@import "modules/paginator.less";
+// generic results 
+@import "modules/results.less";
+
+@import "modules/viewTypeSwitch.less";
+@import "modules/facetSelector.less";
+@import "modules/facetValueFlyout.less";
+@import "modules/slideViewer.less";
+@import "modules/binaryViewer.less";
+
+@import "pages/advancedSearchPage.less";
+@import "pages/cultureItemPage.less";
+@import "pages/institutionItemPage.less";
+@import "pages/institutions.less";
+@import "pages/listPage.less";
+
+@import "widgets/searchQueryWidget.less";
+@import "widgets/searchResultsWidget.less";
+@import "widgets/objectDisplayWidget.less";
+@import "widgets/objectBinariesDisplayWidget.less";
+@import "widgets/mediaPlayerWidget.less";
+@import "widgets/languageWidget.less";
+@import "widgets/editorialWidget.less";
+
+@import "modules/tree.less";
+
+@import "viewers/dfg.less";
+.highlight {
+    font-weight: bold; // background-color: #ff0;
+}
+
+.gridItemImage{
+    border: 0px;
+}
+
+.build{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    font-size: @font_12;
+    color: rgba(0,0,0,0.3);
+    padding: 5px;
+    z-index: 3;
+}

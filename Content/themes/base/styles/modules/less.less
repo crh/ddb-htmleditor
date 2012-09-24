@@ -1,0 +1,53 @@
+﻿@font_stack: Calibri, Arial, sans-serif;
+@web_font_stack: KarbidWeb, Calibri, Arial, sans-serif;
+
+@font_10: 0.625em;
+@font_12: 0.750em;
+@font_13: 0.814em;
+@font_14: 0.875em;
+@font_15: 0.938em;
+@font_16: 1em;
+@font_17: 1.064em;
+@font_18: 1.125em;
+@font_20: 1.250em;
+@font_22: 1.375em;
+@font_28: 1.750em;
+@font_30: 1.875;
+
+@copy: #3e3a37;
+@strong: #56524f;
+@heading: #a5003b; // Plum
+@extraLightBackground: #EFEBE8; // Very Light Grey
+@dividerGrey: #D1CDCA; // Darker Grey
+
+@link: @strong;
+@link_active: #a5003b;
+
+@input_text: @copy;
+
+// DW: To Review
+@nav_border: #d1cdcb;
+@results_border: #e9e5e2;
+
+// first for IE 4–8
+@font-face {
+	font-family: KarbidWeb;
+	src: url("/Content/themes/base/fonts/KarbidWeb.eot");
+}
+
+// then for WOFF-capable browsers
+@font-face {
+	font-family: KarbidWeb;
+	src: url("/Content/themes/base/fonts/KarbidWeb.woff") format("woff");
+}
+@font-face {
+	font-family: KarbidWeb;
+	src: url("/Content/themes/base/fonts/KarbidWeb-Bold.woff") format("woff");
+	font-weight: bold;
+}
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+    box-shadow:         @style @c;
+    -webkit-box-shadow: @style @c;
+    -moz-box-shadow:    @style @c;
+}

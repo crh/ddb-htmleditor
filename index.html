@@ -4,9 +4,13 @@
     <title>Web Editor</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
-<!--
+    <link rel="stylesheet" href="css/ddb.less"/>
+    <!--
     <link rel="stylesheet" type="text/css" href="css/navigation.css"/>
--->
+    -->
+    <!--[if lt IE 9]>
+      <script src="../Scripts/html5shim.googlecode.html5.js"> </script>
+    <![endif]-->
 
     <!-- WebDAV includes -->
     <script type="text/javascript" src="webdav/webdav.js"></script>
@@ -277,32 +281,102 @@
   </head>
 
   <body>
-    <p>
-      <div id="languages">
-        Language:
-        <script type="text/javascript">
-          listLanguages();
-        </script>
+
+    <!-- DDB HEADER -->
+    <!--[if lt IE 9]>
+      <div class="header">
+     <![endif]-->
+    <header class="main">
+      
+      <!--[if lt IE 9]>
+          <div class="nav widget" data-widget="NavigationWidget">
+	    <![endif]-->
+      
+      <h1 class="a11y">DDB - Static Content Editor</h1>
+      
+      <nav class="widget" data-widget="NavigationWidget">
+	<div role="banner">
+	  <a href="http://frontend.deutsche-digitale-bibliothek.de/" class="navigationHeaderLogo" title="Deutsche Digitale Bibliothek" tabindex="-1">
+	    <img alt="" class="siteLogo" src="Content/themes/base/elements/logo_header.png" />
+	  </a>
+	</div>
+	
+	<ul class="navigation" role="navigation">
+	  <li class="active root"><a href="./">Static Content Editor</a></li>
+	</ul>
+	
+	<div>
+	  <ul class="toolbar" role="navigation">
+	    <li class="language">
+	      <a href="http://frontend.deutsche-digitale-bibliothek.de/language">Deutsch</a>
+	    </li>
+	  </ul>
+	</div>
+	
+      </nav>
+      <!--[if lt IE 9]>
+          </div>
+      <![endif]-->
+
+    </header>
+    <!--[if lt IE 9]>
+	</div>
+    <![endif]-->
+
+    <div class="container" role="main">
+      <p>
+	<div id="languages">
+          Language:
+          <script type="text/javascript">
+            listLanguages();
+          </script>
+	</div>
+      </p>
+      <p>
+	<div id="files">
+          <script type="text/javascript">
+            internalListDir(getFs().dir(staticPath + "de"));
+          </script>
+	</div>
+      </p>
+      <p>
+	New directory name:
+	<input id="dirname" type="text"/>
+	<input type="button" value="create" onclick="javascript:newDir()"/>
+      </p>
+      <p>
+	New file name:
+	<input id="filename" type="text" onkeyup="javascript:newFile()" oncut="javascript:newFile()" onpaste="javascript:newFile()"/>
+      </p>
+      <p>
+	<textarea name="content" cols="0" rows="50" style="width:100%"></textarea>
+      </p>
+    </div>
+
+
+    <!-- DDB FOOTER -->
+    <!--[if lt IE 9]>
+      <div class="footer" role="contentinfo">
+    <![endif]-->
+    <footer role="contentinfo">
+      <h1 class="a11y">Website-Fu&#223;zeile</h1>
+      <div class="legal">
+	<div class="inner">
+	  <small>Copyright &#169; 2012 Deutsche Digitale Bibliothek</small>
+	  <ul>
+	    <li><a href="http://frontend.deutsche-digitale-bibliothek.de/content/terms">Nutzungsbedingungen</a></li>
+	    <li><a href="http://frontend.deutsche-digitale-bibliothek.de/content/privacy">Datenschutzerkl&#228;rung</a></li>
+	    <li><a href="http://frontend.deutsche-digitale-bibliothek.de/content/publisher">Impressum</a></li>
+	    <li><a href="http://frontend.deutsche-digitale-bibliothek.de/content/sitemap">Sitemap</a></li>
+	    <li><a href="http://frontend.deutsche-digitale-bibliothek.de/content/contact">Kontakt</a></li>
+	  </ul>
+	</div>
       </div>
-    </p>
-    <p>
-      <div id="files">
-        <script type="text/javascript">
-          internalListDir(getFs().dir(staticPath + "de"));
-        </script>
+    </footer>
+    <!--[if lt IE 9]>
       </div>
-    </p>
-    <p>
-      New directory name:
-      <input id="dirname" type="text"/>
-      <input type="button" value="create" onclick="javascript:newDir()"/>
-    </p>
-    <p>
-      New file name:
-      <input id="filename" type="text" onkeyup="javascript:newFile()" oncut="javascript:newFile()" onpaste="javascript:newFile()"/>
-    </p>
-    <p>
-      <textarea name="content" cols="0" rows="50" style="width:100%"/>
-    </p>
+    <![endif]-->
+
+
   </body>
 </html>

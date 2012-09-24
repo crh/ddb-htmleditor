@@ -1,0 +1,142 @@
+﻿@import "../modules/less.css";
+
+div.printSummary {
+    font-family: @font_stack;
+    border: 1px solid @results_border;
+    border-width: 2px;
+    padding: 20px;
+    margin-bottom: 10px;
+    div.searchPrintSummary{
+
+        margin-bottom: 25px;
+
+        span.printSearchQueryTitle {
+            font-weight: bold;
+        }
+
+        span.printSearchQuery {
+            font-weight: bold;
+            color: #ae013b;
+        }
+    }
+    
+    div.facetPrintSummary{
+        ul {	
+		    list-style: none;
+            margin: 0;
+		    padding: 0;
+            display: inline;
+            li {
+                span.printFacetName {
+                    color: @input_text;
+                    font-weight: bold;
+                }
+                ul {
+                    li{
+                        display: inline;
+                        list-style-type: none;
+
+                        span.printFacetValue {
+                            color: @input_text;
+                        }
+
+                        span.comma {
+                            color: @input_text;
+                            margin-left: -4px;    
+                        }
+
+                        &:last-child {
+                            span.comma {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+div.inner {
+    div.actions {
+        display: none;
+    }
+
+    div.searchResults {
+        border: 1px solid @results_border;
+        border-width: 1px 0 0;
+
+        ul {	
+            padding: 5px 0;
+		    list-style: none;
+            margin: 0;
+            li.page {
+                li.item {
+                    margin-bottom: 10px;
+                    page-break-inside: avoid;
+                    -webkit-column-break-inside: avoid;
+                    -moz-column-break-inside: avoid!important;
+				    overflow: hidden;
+                }
+
+                ul.grid {
+                
+                    li.item {
+			            width: 150px;
+                        margin-right: 0;
+
+                        border-width: 1px 0 0 0;
+
+			            display: -moz-inline-stack;
+			            display: inline-block;
+
+			            vertical-align: top;
+
+                        &:nth-child(4n) {
+                            padding-right: 0;
+                        }
+                    }
+                }
+            }
+
+		    input[type=checkbox] {
+			    display: none;
+		    }
+
+		    img {
+			    float: right;
+			    width: 82px;
+			    height: 113px;
+		    }
+
+            &.grid img {
+                width: 140px;
+                float: none;
+                height: auto;
+                margin-left: 11px;
+	        }
+
+		    a {
+                text-decoration: none;
+			    display: block;
+                margin: 0 92px 0 28px;
+
+                div {
+				    font-size: @font_18;
+                    font-family: @font_stack;
+                    font-weight: bold;
+				    color: @heading;
+                    line-height: 1.2em;
+                }
+		    }
+
+		    div.buttons {
+                display: none;
+		    }
+
+            ul.types {
+                display: none;
+            }
+	    }
+    }
+}

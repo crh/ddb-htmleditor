@@ -1,0 +1,508 @@
+@import "../modules/less.less";
+
+.advancedSearchWidget {
+    padding: 20px 0 20px 0;
+    width: 960px;
+    margin: 0 auto;
+
+	input {
+	
+		box-shadow: none;
+	
+	}
+
+    .wrapper {
+        width: 100%;
+
+        & > .buttons {
+            clear: both;
+            float: right;
+            margin-top: 20px;
+
+            button {
+                padding: 0 10px;
+				margin: 0px 4px;
+                min-width: 100px;
+				width: 100px;
+
+					&:active, &:focus, &:hover {
+						background-position: top center;
+					 }
+
+            }
+        }
+    }
+    
+    .groupWidget {
+        clear: both;
+        margin: 10px 0px;
+        padding: 5px;
+        padding-bottom: 35px;
+        background-color: @extraLightBackground;
+        border-top: 1px solid @nav_border;
+        border-bottom: 1px solid @nav_border;
+
+        .value, .facetValues {
+            width: 510px;
+        }        
+
+        .matchValue {
+
+            width: 155px;
+        }
+
+        .hr {
+            background: #FFF;
+            color: #FFF;
+            margin: 10px auto;
+        }
+    }
+
+    .queryGroup {
+        width: 100%;
+        clear: both; 
+        margin: 15px auto 10px auto;
+
+        input, select {
+            margin: 0 10px 5px 0;
+        }
+    }
+
+    .queryRow {
+
+        margin: 5px 10px;
+
+		padding: 10px 0px;
+
+		width: 100%;
+
+        input, select {
+            float: left;
+        }
+
+    }
+    .operatorWrap {
+
+        margin: 10px 10px 15px 10px;
+		float: left;
+		width: 210px;
+
+        label, select.operator { 
+            display: inline;
+            margin-right: 4px;
+        }
+
+        ul {
+            margin: 10px auto;
+        }
+    }
+    
+    .facet, .facetValues, .value {
+        float: left;
+        margin-right: 10px;
+    }
+
+    .groupButtons {
+        
+		&.removeGroup {
+		
+			margin-right: 26px;
+			margin-top: 10px;
+			float: right;
+		
+		}
+		
+
+		&.addRemoveRow {
+		
+			margin-right: 35px;
+		
+		}
+		
+		
+    }
+
+
+    .globalOperator {
+        float: left;
+        margin: 10px 14px; 
+        label, select.operator { 
+            display: inline;
+            margin-right: 4px;
+            height: 25px;
+        }
+    }
+
+    .operator {
+    }
+
+    .facet {
+        width: 170px;
+    }
+
+    form {
+        width: 100%;
+        float: none;
+        position: relative;
+        margin: 30px 0px;
+    }
+
+    h1 {
+        margin:  0px 0px 15px 0px;
+        padding: 0px;
+        float: left;
+    }
+    
+    .hr {
+        padding: 0;
+        margin: 0;
+        height: 1px;
+        background: @extraLightBackground;
+        color: @extraLightBackground;
+        border: none;
+        clear:both;
+    }
+    
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    li {
+        clear: both;
+    }
+    
+    span.contextualHelp {
+        width: 29px;
+        height: 29px;
+        margin-top: 7px;
+        margin-left: 19px;
+        background-position: 0 0;
+        float: left;
+    }
+}
+
+.js .advancedSearchWidget {
+    
+    .globalOperator {
+        display: none;
+    }
+
+    .addGroupButtonContainer {
+        display:none;
+        clear: both;
+        padding: 10px 10px;
+        margin-bottom: 10px;
+		margin-right: 224px; 
+        float: right;
+		height: 20px;
+		width: 20px;
+
+
+		button {
+		
+			background: url("/Content/themes/base/icons/adv_search_row_actions.png") no-repeat scroll 0 0 transparent;
+			box-shadow: none;
+			color: #3E3A37;
+			font-weight: normal;
+			height: 18px;
+			line-height: 18px;
+			text-indent: 0;
+			text-shadow: none;
+			width: 233px;
+
+			&.addGroupButton {
+				background-position: 201px 0px;
+
+				&:hover, &:active, &:focus {
+					background-position: 201px -20px;
+					color: #A5003B;
+					text-decoration: underline;
+				}
+			}
+
+
+
+		}
+
+
+        
+    }
+
+    .groupButtons {
+
+		position: relative;
+
+		a {
+
+			&.removeButton {
+
+				position: absolute; 
+				right: 40px; 
+				width: 26px; 
+				height: 20px; 
+				overflow: hidden; 
+				top: 5px;
+
+				span {
+					
+					overflow: hidden; 
+					width: 25px; 
+					height: 25px;
+				
+				}
+
+
+				img {
+					margin: 0px;
+					position: absolute;
+					display: block;
+					top: 0px;
+					left: 0px;
+
+					&:hover {
+					
+						top: -46px;
+					
+					}
+
+					&:focus, &:active {
+					
+					
+					}
+				}
+			
+			
+			}
+
+
+			&.addButton {
+				position: absolute;
+                width: 26px;
+                height: 20px;
+                right: 18px;
+                top: 5px;
+				overflow: hidden;
+				
+            
+                span {
+					
+					overflow: hidden; 
+					width: 25px; 
+					height: 25px;
+				
+				}
+
+
+				img {
+					margin: 0px;
+					position: absolute;
+					display: block;
+					top: -67px;
+					left: 0px;
+					display: none;
+
+					&:hover {
+					
+						top: -109px;
+					
+					}
+
+					&:focus, &:active {
+					
+						top: -109px;
+					}
+
+
+
+				}
+            }
+
+		
+		}
+
+		button {
+		
+			width: 20px;
+			height: 20px;
+			overflow: hidden;
+			background: none;
+			box-shadow: none;
+			float: left;
+
+			*background: url('/Content/themes/base/icons/adv_search_row_actions.png') no-repeat;
+            *text-indent: 20px;
+            *background-position: 0px -150px;
+
+			&:before {
+				
+					display: inline-block;
+					content: url('/Content/themes/base/icons/adv_search_row_actions.png');
+				}
+			
+			&.removeButton, &.addButton {
+			
+				margin: 0px 2px;
+			
+			}
+
+
+			&.removeButton{
+				
+				*background-position: 0px -60px;
+			}
+
+			
+			&.removeButton:before {
+
+				margin: -60px 0 0 0px;		
+			}
+
+			&.removeButton:hover:before {
+
+				margin: -80px 0 0 0px;
+			}
+
+			&.removeButton:active:before, &.removeButton:focus:before {
+				 margin: -80px 0px 0px 0px;
+			 }
+
+			&.removeButton:hover {
+				*background-position: 0px -80px;
+			}
+
+
+			&.addButton {
+			
+				*background-position: 0px 0px;
+	
+			}
+
+			&.addButton:before {
+			
+				margin: 0px 0px;
+	
+			}
+
+			&.addButton:hover:before {
+				margin: -20px 0 0 0px;
+			}
+
+			&.addButton:active:before, &.addButton:focus:before {
+				 margin: -20px 0px 0px 0px;
+			 }
+
+
+			&.addButton:hover {
+				*background-position: 0px -20px;
+			}
+
+			
+			&.addGroupButton {
+				*background-position: 0px 0px;
+			}
+
+			&.addGroupButton:before {
+				margin: 0px 0px;
+			}
+
+
+			&.removeGroupButton {
+				*background-position: 0px -60px;
+			}
+
+			&.removeGroupButton:before {
+				margin: -60px 0px;
+			}
+
+			&.removeGroupButton:hover:before {
+				margin: -80px 0 0 0px;
+			}
+
+			&.removeGroupButton:active:before, &.removeGroupButton:focus:before {
+				 margin: -80px 0px 0px 0px;
+			 }
+
+
+			&.removeGroupButton:hover {
+				*background-position: 0px -80px;
+			}
+
+		}
+
+/*
+        button {
+
+            display: block;
+            height: 18px;
+            line-height: 18px;
+			position: relative;
+            .boxShadow(none);
+            text-shadow: none;
+
+            &.removeGroupButton {
+                margin: 10px;
+                width: 18px;
+                background-position: 1px -45px;
+                text-indent: -999em;
+                float:right;
+                &:hover {
+                    background-position: 1px -23px;
+                }
+            }
+
+			
+        }
+
+
+		button {
+		
+			background: url("/Content/themes/base/icons/adv_search_row_actions.png") no-repeat;
+		
+		}
+
+*/
+		
+    }
+    
+    div.tooltip {
+        position: absolute;
+        top: 70px;
+        left: 10px;
+        max-width: 580px;
+        margin: 0px auto 0 auto;
+        color: @copy;
+        font-size: @font_15;
+
+        background-position: right -24px;
+        display: none;
+    }
+
+}
+
+.nojs {
+    .addGroupButtonContainer {
+        display:none;
+    }
+
+    .groupButtons {
+        display:none;
+    }
+
+    li > .buttons {
+        display: none;
+    }
+}
+
+.ie7 .advancedSearchWidget .groupButtons{
+
+	a.addButton img, a.removeButton img {
+		margin-left: 10px;
+	}
+}
+
+.ie8 .advancedSearchWidget .queryRow  {
+
+	height: 20px;
+}

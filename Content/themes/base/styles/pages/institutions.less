@@ -1,0 +1,154 @@
+@import "../modules/less.less";
+
+.institutions {
+	
+	#topContainer {
+        padding: 10px 5px 10px 10px;
+		line-height: 24px;
+		height: 24px;
+		background-color: @extraLightBackground;
+	}
+
+    .sectorSelectorWrapper {
+        float: right;
+        clear: right;
+        width: 230px;
+        max-width: 230px;
+		display: none;
+		
+		.facetSelector {
+			border-top-width: 2px;
+			border-bottom-width: 2px;
+			margin-top: 10px;
+
+			div.facetItem {
+				& > input {
+					float:left;
+				}
+
+				& > label:hover {
+					text-decoration: underline;
+					cursor: pointer;
+					color: @link_active;
+				}
+			}
+		}
+
+		h3 {
+			padding-top: 10px;
+			color: #56524F;	
+			font-weight: bold;
+			line-height: 19.5px;
+			margin: 0;
+		}
+    }
+
+	#letterFilter {
+		border-bottom: 2px solid #EFEBE8;
+		width: 730px;
+		padding-top: 10px;
+		padding-bottom: 10px;
+        float: left;
+		a, span {
+			display:inline;
+			padding: 0px 6px 0px 5px;
+			margin: 0px 0px 2px 0px;
+			border-right: 1px solid #ccc;
+
+			&:first-child  { padding-left: 0px; } 
+			&:last-child  { border-right: 0; } 
+
+			&.active {
+				color: @link_active;
+				font-weight:bold;
+			}
+		}
+
+		a {
+			font-weight: bold;
+			color: @copy;
+
+			&:hover {
+				color: @link_active;
+			}
+		}
+
+		span {
+			color: #878380;
+		}
+	}
+
+	#root {
+		list-style: none;
+		width:730px;
+		padding: 0px 0px 0px 0px;
+	}
+
+	#root {
+        float: left;
+        clear: left;
+
+        #noResults {
+			display:none;
+		}
+
+		ul {
+			list-style:none;
+		}
+
+		li {
+			padding: 5px 0px 5px 0px;
+		}
+
+		
+		& > li {
+			i {
+				display: inline-block;
+				width: 10px;
+				height: 10px;
+				margin-right:10px;
+				background: transparent url(/Content/themes/base/icons/list_arrows.png) no-repeat left -45px;
+			}
+		
+
+		//First level
+		
+			& > a { font-weight: bold; }
+			& > i { background-position: left -5px;}
+
+			//Second level
+			& ul > li {
+				& > i { background-position: left -25px;}
+			}
+		
+	    }
+	}
+
+    #map {
+        display: none;
+        padding-top: 40px;
+
+        float: left;
+        clear: left;
+
+        #mapContainerDiv {
+            width: 730px;
+            height: 545px;
+
+            img {
+                border: 0;
+                margin: 0;
+            }
+        }
+    }
+
+}
+.nojs #viewTypeSwitch {
+    display: none;
+}
+
+.ie7 .institutions {
+ #root {
+		width: 710px;
+	 }
+}

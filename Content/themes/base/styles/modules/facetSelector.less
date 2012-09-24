@@ -1,0 +1,390 @@
+@import "less.less";
+
+@focus_color: #3f3a37;
+@min_height: 71px;
+
+.facetSelector {
+    border-top: solid 1px @extraLightBackground;
+    border-bottom: solid 1px @extraLightBackground;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    color: @copy;
+
+    a {
+        color: @copy;
+    }
+
+    * {
+        min-width: 0; // IE7 disappearing text workaround
+    }
+
+    div.facetItem {
+        margin: 2px 0;
+        line-height: 28px;
+        position: relative;
+        font-size: @font_15;
+        
+        background-color: @extraLightBackground;
+        
+        &:hover {
+            background-color: #F6F5F3;
+        }
+
+        &.mouseout {
+            background-color: @extraLightBackground;
+        }
+        
+        &.active,
+        &.selected {
+            padding: 0 10px;
+            background-color: #FFF;
+            background-image: none;
+            border: solid 1px #CFCECC;
+            display: block;
+            min-height: @min_height;
+            font-size: @font_17;
+            
+
+            & > a {
+                display: block;
+                position: relative;
+                padding: 0;
+                border: none;
+                background: none;
+                font-weight: bold;
+            }
+
+        }
+        
+        &.selected {
+            .box-shadow(2px 2px 3px, #CFCECC);
+            margin-bottom: 4px;
+        }
+
+        &.notAvailable {
+            &:hover {
+                .gradient (24deg, #EFEBE8, #DCD4D1);
+            }
+
+            a {
+                color: #D4CBC9;
+                cursor: default;
+
+                &:focus {
+                    border-top: 1px solid #FFFEFB;
+                    border-bottom: 1px solid #E2DDDA;
+                    border-left: 1px solid transparent;
+                    border-right: 1px solid transparent;
+                }
+            }
+        }
+
+        & > a {
+            font-size: 17px;
+            display: block;
+            text-decoration: none;
+            padding: 0 10px;
+
+            background: url("/Content/themes/base/icons/arrows.png") no-repeat;
+            background-position: 100% -48px;
+
+            &:hover {
+                text-decoration: none;
+                background-position: 100% -74px;
+            }
+
+            &:focus {
+                border: 1px solid @focus_color;
+            }
+        }
+
+        &.active > a {
+            font-weight: bold;
+            border: 1px solid transparent;
+
+            &:focus {
+                border: 1px solid @focus_color;
+            }
+        }
+
+        div.facetValueInput {
+            z-index: 3;
+            position: relative;
+            height: 0px;
+            background-color: transparent;
+            padding: 0;
+
+            &.noSelectedValues {
+                &.open {
+                top: -22px;
+                height: 19px;
+                padding-top: 24px;
+
+                   .facetValueInputWrapper {
+                       height: 41px;
+                   }
+
+                   .facetValueInputWrapperBg {
+                       top: -7px;
+                       height: @min_height;
+                   }
+                }
+            }
+
+            &.open {
+                height: 43px;
+
+                .facetValueInputWrapperBg {
+                    visibility: visible;
+                }
+            }
+
+            input {
+                height: 22px;
+                line-height: 20px;
+                margin-top: 9px;
+                padding: 0;
+                width: 100%;
+
+                &.inputError {
+                    color: #ae013b;
+                    border: 1px #ae013b solid;
+                }
+            }
+
+            .insetRule {
+                display:block;
+                border-top: 1px solid #978F8C;
+                border-bottom: 1px solid #DCD5D1;
+                height:0px;
+            }
+
+            .facetValueInputWrapper {
+                position: absolute;
+                z-index: 3;
+                height: 43px;
+                width: 100%;
+                border-top: solid 1px #CFCECC;
+            }
+
+            .facetValueInputWrapperBg {
+                visibility: hidden;
+                position: absolute;
+                z-index: 3;
+                top: -30px;
+                left: 213px;
+                height: 72px;
+                width: 19px;
+                background-color: #FFF;
+                border-top: 1px solid #CFCECC;
+                border-bottom: 1px solid #CFCECC;
+                /* See lte ie8 hacks at bottom of this file */
+                .shadow {
+                    background: -webkit-gradient(linear, left top, left bottom, from(#CFCECC), to(#FFFFFF)); /* Safari 4+, Chrome */
+                    background: -webkit-linear-gradient(top, #CFCECC, #FFFFFF); /* Chrome 10+, Safari 5.1+, iOS 5+ */
+                    background: -moz-linear-gradient(top, #CFCECC, #FFFFFF); /* Firefox 3.6-15 */
+                    background: -o-linear-gradient(top, #CFCECC, #FFFFFF); /* Opera 11.10-12.00 */
+                    background: linear-gradient(to bottom, #CFCECC, #FFFFFF); /* Firefox 16+, IE10, Opera 12.50+ */
+                    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#CFCECC', endColorstr='#FFFFFF',GradientType=0 ); /* IE6-9 */
+
+                    position: relative;
+                    bottom: -72px;
+                    height: 4px;
+                    width: 17px;
+                    margin: auto;
+                }
+                
+            }
+        }
+
+        div.facetValueInputShadow {
+            z-index: 3;
+            position: absolute;
+            height: 44px;
+            width: 10px;
+            margin-bottom: -31px;
+            margin-top: 4px;
+            margin-left: 211px;
+            border-bottom: 1px solid #D7CECC;
+            border-top: 1px solid #87827F;
+            background-color: #D4CBC9;
+
+            &.noSelectedValues {
+                margin-top: -23px;
+                height: 56px;
+            }
+        }
+
+        & > ul {
+            li {
+                line-height: 28px;
+                display: block;
+                color: #4C4A48;
+                position: relative;
+                border-top: 1px #DCD5D1 solid;
+
+                span {
+                    display: block;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-size: @font_14;
+                    white-space: nowrap;
+                    text-indent: 0;
+                    margin-right: 20px;
+
+                    &.label {
+                    }
+
+                    &.count {
+                        text-align: right;
+                        width: 186px;
+                        padding-right: 0;
+                    }
+                }
+
+                a {
+                    background: url("/Content/themes/base/icons/search_actions.png") no-repeat 0 -41px;
+                    height: 18px;
+                    width: 20px;
+                    margin-top: 5px;
+                    text-indent: -9999px;
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    border: 1px solid transparent;
+
+                    &:hover {
+                        background-position: 0px -61px;
+                    }
+
+                    &:focus {
+                        border: 1px solid @focus_color;
+                    }
+
+                    &.selected,
+                    &.unselected {
+                        background: transparent;
+                    }
+                }
+
+            }
+        }
+
+        a.addMoreFilters {
+            display: block;
+            background-color: transparent;
+            position: relative;
+            font-size: @font_14;
+            font-weight: normal;
+            border: 1px solid transparent;
+            
+            &:hover {
+                
+				color: #a5003b;
+				text-decoration: underline;
+            }
+            
+            span {
+                background: url("/Content/themes/base/icons/search_actions.png") no-repeat right -75px;
+                border-top: 1px #DCD5D1 solid;
+                display: block;
+            }
+
+            &:hover span {
+                background-position: right -95px;
+            }
+
+            &:focus, &:active {
+               /* border: 1px dotted @focus_color; */
+            }
+        }
+
+        .valueCount {
+            
+            span {
+                &.flyoutPrev a,
+                &.flyoutNext a {
+                    display: inline;
+                    background-color: transparent;
+                    line-height: 1em;
+                }
+
+                &.flyoutPrev {
+                    a {
+                        margin: 0 11px 0 0;
+                        padding: 0 11px 0 0;
+                        border-right: solid 1px @extraLightBackground;
+                        padding-left: 15px;
+                        background: url("/Content/themes/base/icons/pagination.png") no-repeat 0 -60px;
+                    }
+                }
+                
+                &.flyoutNext {
+                    a {
+                        margin: 0 0 0 11px;
+                        padding: 0 0 0 11px;
+                        border-left: solid 1px @extraLightBackground;
+                        padding-right: 15px;
+                        background: url("/Content/themes/base/icons/pagination.png") no-repeat right -40px;
+                    }
+                }
+            }
+            
+        }
+    }
+
+    .facet-nojs {
+        div.facetItem > ul {
+            margin-bottom: 10px;
+
+            li {
+                margin:0;
+            }
+
+            span {
+                margin: 0;
+                display: block;
+            }
+
+            a {
+                position: static;
+                padding: 0;
+                margin: 0;
+                text-indent: 0;
+                display: block;
+                width: 100%;
+                height: auto;
+
+                .label {
+                    text-overflow: ellipsis;
+                    display: block;
+                    margin-right: 30px;
+                    overflow: hidden;
+                }
+
+                .count {
+                    position: absolute;
+                    display: block;
+                    width: auto;
+                    right: 0;
+                    top: 0;
+                }
+            }
+        }
+    }
+}
+
+.ie7, .ie8 {
+    .facetSelector div.facetItem.selected {
+        border-bottom: solid 2px #CFCECC;
+        border-right: solid 2px #CFCECC;
+        .facetValueInputWrapperBg {
+            left: 212px;
+            border-bottom: solid 2px #CFCECC;
+
+            .shadow {
+                display: none;
+            }
+        }
+    }
+}

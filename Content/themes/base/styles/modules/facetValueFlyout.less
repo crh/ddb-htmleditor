@@ -1,0 +1,160 @@
+@import "less.less";
+
+.facetItem .flyout {
+    z-index: 2;
+    display: none;
+    background-color: #FFF;
+    border: 1px #CFCECC solid;
+    padding: 0 10px;
+    min-width: 200px;
+    min-height: 71px;
+    margin: 0 0 0 -1px;
+    font-size: @font_15;
+    color: @copy;
+
+    left: 232px; /* initial position, replaced by js */
+
+    .box-shadow(0px 2px 5px, #CFCECC); /* see lte IE8 hacks at bottom of this file */
+    
+    a {
+        color: @copy;
+    }
+
+    &.noSelectedValues {
+        margin-top: -20px;
+    }
+
+    div.facetLoader {
+        position: absolute;
+        margin: 40px 0 0 2px;
+
+        img {
+            margin: 0;
+        }
+    }
+
+    div.flyoutHeader {
+        float: left;
+        width: 100%;
+        font-weight: bold;
+        line-height: 30px;
+        padding: 0;
+        margin: 0;
+        border-bottom: solid 1px @results_border;
+        color: @strong;
+        
+        a {
+            color: @strong;
+        }
+
+        p {
+            float: left;
+            padding: 0px;
+            margin: 0px;
+            
+            font-size: @font_15;
+            font-weight: bold;
+            &.valueCount {
+                float:right;
+                font-weight: normal;
+            }
+        }
+    }
+
+    div.flyout_list {
+        clear:both;
+        float: left;
+        padding: 8px 0px;
+
+        span.label {
+            strong {
+                color: #333;
+            }
+        }
+
+        
+        ul.flyout_list_column {
+            float: left;
+            width: 50%;
+                
+            &.first li {
+                margin-right: 5px;
+            }
+
+            &.last li {
+                margin-left: 5px;
+            }
+
+            li {
+                display: block;
+                padding: 0px;
+                margin-top: 2px;
+                margin-bottom: 2px;
+
+                background-color: @extraLightBackground;
+
+                &:hover {
+                    background-color: #F6F5F3;
+                }
+
+                a {
+                    margin: 1px;
+                    display: block;
+                    position: relative;
+                    line-height: 30px;
+                    padding: 0 10px;
+                    cursor: pointer;
+
+                    &:hover {
+
+						color: #A5003B;
+                        
+                    }
+
+
+
+                    &.focused {
+                        background-color: #F6F5F3;
+						color: #A5003B;
+						text-decoration: underline;
+                    }
+
+                    span.label {
+                        display: block;
+                        margin-right:40px;
+                        overflow:hidden;
+                        white-space: pre-line;
+                        text-overflow: ellipsis;
+                    }
+
+                    span.count {
+                        display: inline-block;
+                        position: absolute;
+                        right: 0px;
+                        top: 0px;
+                        padding-right: 3px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#advancedSearchContents .advancedSearchResults div.flyout {
+    ul {
+        &.first {
+        }
+
+        &.last {
+
+        }
+    }
+}
+
+.ie7, .ie8 {
+    .facetItem .flyout {
+        border-bottom: solid 2px #CFCECC;
+        border-right: solid 2px #CFCECC;
+    }
+}
+

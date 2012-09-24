@@ -1,0 +1,222 @@
+﻿@import "../modules/less.less";
+
+div.searchQueryWidget {
+    margin: 0 auto;
+    position: absolute;
+    top: 85px;
+    margin-left: 616px;
+
+    form {
+        width: 396px;
+        padding: 0;
+        margin-top: -10px;
+		height: 100px;
+		margin-left: -15px;
+    }
+
+    label {
+        margin: 0;
+    }
+
+    label span {
+        display: block;
+        overflow: hidden;
+        height: 0px;
+        width: 0px;
+        margin: 0;
+    }
+
+    input {
+        float: left;
+        padding: 0 0 0 5px;
+        -webkit-appearance: textfield;
+        font-size: @font_15;
+        width: 315px;
+        height: 25px;
+        line-height: 25px;
+        margin-right: 4px;
+        margin-bottom: 0;
+    }
+
+    button {
+        position: relative;
+        right: 0;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+		box-shadow: none;
+
+        overflow: hidden;
+        background: none;
+        *background: url("/Content/themes/base/icons/search.png") no-repeat;
+        *text-indent: 24px;
+        *background-position: 0px -150px;
+
+        &:before {
+            display: inline-block;
+            content: url("/Content/themes/base/icons/search.png");
+            margin: -150px 0px 0px 0px;
+        }
+
+        &:hover:before {
+            margin: -200px 0px 0px 0px;
+        }
+
+        &:active:before, &:focus:before {
+            margin: -250px 0px 0px 0px;
+        }
+
+        &:hover {
+            *background-position: 0px -200px;
+        }
+    }
+
+    span.contextualHelp {
+		height: 20px;
+		overflow: hidden;
+		position: absolute;
+		right: 15px;
+		top: -7px;
+		width: 40px;
+		background: none;
+
+		 img {
+			position: absolute; 
+			top: -58px; 
+			right: -1px;
+			margin: 0;
+		 }
+    }
+
+    div.tooltip,
+	img.bigLogo {
+        display: none;
+    }
+
+    a.linkAdvSearch {
+        position: absolute;
+        font-size: @font_13;
+        top: 19px;
+        left: -15px;
+    }
+}
+
+body.nojs div.searchQueryWidget {
+    top: 133px;
+}
+
+body.start div.searchQueryWidget {
+    width: 980px;
+    background: transparent;
+    padding-top: 60px;
+    padding-bottom: 20px;
+	text-align: center;
+    margin-left: 0;
+    position: relative;
+    top: 0px;
+	height: 300px;
+
+
+	img.bigLogo {
+		display:block;
+		margin: 0px auto 23px;		
+	}
+
+    form {
+        float: none;
+        position: relative;
+        padding-bottom: 15px;
+        top: 0px;
+        width: 555px;
+        margin: 0 auto;
+		text-align: left;
+    }
+
+    input {
+        font-size: @font_20;
+        width: 485px;
+        height: 40px;
+        line-height: 40px;
+    }
+
+    button {
+        width: 40px;
+        height: 40px;
+        *background-position: 0px 0px;
+        *text-indent: 50px;
+
+        &:before {
+            margin: 0px 0px 0px 0px;
+        }
+
+        &:hover:before {
+            margin: -50px 0px 0px 0px;
+        }
+
+        &:active:before, &:focus:before {
+            margin: -100px 0px 0px 0px;
+        }
+
+        &:hover {
+            *background-position: 0px -50px;
+        }
+    }
+
+    span.contextualHelp {
+    	overflow: hidden; 
+		width: 32px; 
+		height: 30px;
+		position: absolute;
+		display: block;
+		right: -15px;
+		top: 7px;
+		margin:0px;
+		text-ident: 0;
+		background: none;
+		text-ident: -999em;
+
+		 img {
+		 
+			position: absolute; 
+			top: 0px; 
+			right: 0px;
+			margin: 0;
+		 
+		 
+		 }
+
+
+    }
+
+
+
+    div.tooltip {
+
+        left: 0;
+        max-width: 530px;
+        margin: 12px 0px;
+        background-position: right -24px;
+        display: none;
+		color: @copy;
+        font-size: @font_15;
+		position: absolute;
+		top: 40px;
+
+		div {
+			padding: 3px 20px;
+		}
+    }
+
+    a.linkAdvSearch {
+        font-size: @font_15;
+        top: 50px;
+		left: 0px;
+    }
+}
+
+input[type=search]::-webkit-search-cancel-button {
+    background-color: #f00;
+    cursor: pointer;
+    color: #f00!important;
+}
+

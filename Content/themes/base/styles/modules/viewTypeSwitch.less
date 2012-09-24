@@ -1,0 +1,106 @@
+﻿@import "less.less";
+
+@unselectedBorder: #f1edea #d1cdca #d1cdca #f1edea;
+@selectedBorder: #d1cdca #f1edea #fff #d1cdca; 
+
+#viewTypeSwitch {
+    float: right;
+    clear: right;
+	height: 25px;
+	width: 68px;
+
+    button {
+        position: relative;
+        right: 0;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+
+        overflow: hidden;
+        background: none;
+		box-shadow: none;
+		float: left;
+		margin: 0px 5px;
+
+        *background: url("/Content/themes/base/icons/viewSelector.png") no-repeat;
+        *text-indent: 24px;
+        *background-position: 0px 0px;
+
+        &:before {
+            display: inline-block;  
+            content: url("/Content/themes/base/icons/viewSelector.png");
+        }
+		
+		&.list:before {
+            margin: -24px 0 0 0;
+		}
+
+		&.list:hover:before, &.list:focus:before {
+            margin: -24px 0 0 -24px;
+		}
+
+        &.list.selected:before, &.list.selected:hover:before, &.list.selected:focus:before {
+            margin: -24px 0 0 -48px;
+        }
+
+        &.list {
+            *background-position: 0px -24px;	
+		}
+
+		&.list:hover {
+            *background-position: -24px -24px;
+		}
+
+        &.list.selected, &.list.selected:hover {
+            *background-position: -48px -24px;
+        }
+		
+		&.grid:before {
+            margin: 0px;
+		}
+
+		&.grid:hover:before, &.grid:focus:before {
+            margin: 0 0 0 -24px;
+		}
+
+        &.grid.selected:before, &.grid.selected:hover:before, &.grid.selected:focus:before {
+            margin: 0 0 0 -48px;
+        }
+
+        &.grid {
+            *background-position: 0 0;	
+		}
+
+		&.grid:hover {
+            *background-position: -24px 0px;
+		}
+
+        &.grid.selected, &.grid.selected:hover {
+            *background-position: -48px 0;
+        }
+
+		&.map:before {
+            margin: -48px 0 0 0;
+		}
+
+		&.map:hover:before, &.map:focus:before {
+            margin: -48px 0 0 -24px;
+		}
+
+        &.map.selected:before, &.map.selected:hover:before, &.map.selected:focus:before {
+            margin: -48px 0 0 -48px;
+        }
+
+        &.map {
+            *background-position: 0px -48px;	
+		}
+
+		&.map:hover {
+            *background-position: -24px -48px;
+		}
+
+        &.map.selected, &.map.selected:hover {
+            *background-position: -48px -48px;
+        }
+    }
+}

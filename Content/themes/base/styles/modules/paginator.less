@@ -1,0 +1,80 @@
+﻿@import "less.less";
+
+div.paginator {
+    font-size: @font_15;
+    color: @strong;   
+    line-height: 42px;
+    
+    .hide {
+        display: none;
+    }
+
+    div.pageNav{
+        float: right;
+        
+        .prevNav {
+            margin-right: 10px;
+            border-right: solid 1px @extraLightBackground;
+        }
+        
+        .nextNav {
+            margin-left: 10px;
+            border-left: solid 1px @extraLightBackground;
+        }
+
+        a { 
+            background: url("/Content/themes/base/icons/pagination.png") no-repeat;
+
+            display: inline;
+            
+            @icon_padding: 15px;
+            &.next {
+                padding-right: @icon_padding;
+                margin-left: 10px;
+                background-position: right -40px;
+            }
+
+            &.last {
+                padding-right: @icon_padding;
+                background-position: right 0px;
+            }
+
+            &.prev {
+                margin-right: 10px;
+                padding-left: @icon_padding;
+                background-position: 0 -60px;
+            }
+
+            &.first {
+                padding-left: @icon_padding;
+                background-position: 0 -20px;
+            }
+        }
+    }
+
+    .pageFilter {
+        float: left;
+		color: @strong;
+
+        label {
+            display: inline;
+        }
+
+        div.rowCountSwitch, div.sortTypeSwitch {
+            font-size: 14px;
+            display: inline;
+            select {
+                width: 50px;
+                height: 22px;
+                margin: 0 15px 0 8px;
+                border: 1px solid #858280;
+            }
+        }
+
+	    div.sortTypeSwitch {
+		    select {
+			    width: 100px;
+		    }
+	    }
+    }
+}

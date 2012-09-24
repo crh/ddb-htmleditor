@@ -1,0 +1,111 @@
+﻿@import "../modules/less.css";
+
+// default widget styling
+div.objectDisplayWidget {
+    div.objectControls {
+        display: none;
+
+        div.buttons {
+            display: none;
+        }
+    }
+
+    h1.a11y {
+        display: none;
+    }
+
+    h2 {
+		font-size: @font_18;							
+        font-family: @web_font_stack;
+        font-weight: bold;
+		color: @heading;
+        line-height: 1.2em;
+        margin: 0 0 1em;
+    }
+
+    div.objectWrapper {
+        padding: 15px;
+        margin-top: 1em;
+        margin-bottom: 25px;
+        border: 1px solid @results_border;
+        border-width: 0 0 2px;
+        overflow: hidden;
+
+        div.objectDisplay {
+            float: left;
+            width: 443px;
+        }
+
+        div.accordion {
+            display: none;
+        }
+
+        div.accordionHeader {
+            font-size: @font_13;
+
+            div.accordionText {            
+                background: url("/Content/themes/base/icons/arrows_red.png") no-repeat 8px -125px;
+                color: #56524f;
+                padding: 0 0 0 31px;
+
+                span {
+                    background: url("/Content/themes/base/icons/arrows_red.png") no-repeat right -125px;
+                }
+            }
+        }
+
+		div.virtualExhibitionWidget {
+			
+			article {
+				display: none;
+
+				&.selected {
+					display: block;	
+
+					div.buttons {
+						display: none;
+					}
+				}
+			}
+			nav {
+				display: none;
+			}
+
+		}
+
+    }
+
+    dl {
+        padding-left: 14px;
+        margin-top: 0;
+    }
+
+    dt, dd {
+        padding-bottom: 0.5em;
+        margin: 0;
+        font-size: @font_15;
+    }
+
+    dt { 
+        float: left;
+        font-weight: bold;
+
+        &.title {
+            display: none;
+        }
+    }
+
+    dd {
+        margin-left: 180px;
+    }
+}
+
+// revised styling when JS is available
+body.js div.objectDisplayWidget {
+
+    div.objectControls,
+    div.objectWrapper div.object div.accordion {
+        display: block;
+    }
+}
+

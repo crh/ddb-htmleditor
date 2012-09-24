@@ -1,0 +1,239 @@
+@import "less.css";
+
+@bg_node: url("/Content/themes/base/bg/advanced_search_solid_joint_standard_top.png") no-repeat 7px 0px;
+@bg_last: url("/Content/themes/base/bg/advanced_search_solid_joint_last_item.png") no-repeat 7px 0px;
+@dotted_joint: url("/Content/themes/base/bg/advanced_search_dotted_joint.png") no-repeat 7px 0px;
+@solid_joint: url("/Content/themes/base/bg/advanced_search_solid_joint.png") repeat-y 7px 0px;
+@node_background_color: #a5003b;
+
+.hierarchyViewer {
+    //background: #fff url("/Content/themes/base/bg/advanced_nav_gradient.png") repeat-x center bottom;
+    border: 1px solid @results_border;
+    margin-bottom: 30px;
+    padding: 15px 15px 30px;
+
+    .loading {
+        img {
+            margin: 5px 0 0 30px;
+        }
+    }
+
+    .label {
+        display: block;
+        margin-left: 30px;
+    }
+
+	
+
+    .currentNode {
+
+        &.leaf > .box {
+            border: none;
+            background: transparent;
+        }
+    }
+
+	li.initialPath > .box > .label > span {
+			font-weight: bolder;
+	} 
+	
+	li.currentNode > .box > .label {
+			color: black;
+			font-weight: bolder;
+			
+			&:hover {
+				color: @link_active;
+			}	
+	}
+
+	li.root > .box {
+		
+		& > .branchType {
+			background-color: #999;
+		}
+
+		.label > span {
+			font-weight: bolder;
+		}
+
+    }
+
+    .leafIndicator {
+		display: block;
+        float: left;
+        margin: 1px 5px 1px 0px;
+        width: 16px;
+        height: 17px;
+        background: transparent url("/Content/themes/base/icons/hierarchy_leaf.png") no-repeat;
+    }
+
+	.currentNode.leaf .leafIndicator {
+		 background: transparent url("/Content/themes/base/icons/hierarchy_active_leaf.png") no-repeat;
+	}
+
+	.groupName {
+		font-style: italic;
+		padding-left: 60px;
+		padding-top: 8px;
+		background: @solid_joint;
+	}
+
+	.groupName {
+		display: none;
+		color: @copy;
+	}
+
+	span.groupName.hasName {
+		display: block;
+	}
+
+	.siblingCount {
+		position: absolute;
+		top: 78px;
+	}
+
+	ul#root > li > .siblingCount {
+		top: 62px;
+	}
+
+    ul {
+        clear: both;
+        list-style: inside;
+        margin: 0;
+        padding: 0;
+    }
+
+	ul.nodeGroup {
+		list-style: none;
+	}
+
+    ul.node > li {
+		position:relative;
+        clear: both;
+        background: @bg_node;
+        list-style: none;
+        margin: 0;
+        padding: 17px 0 0 56px;
+        min-height: 26px;
+
+        &.leaf {
+            background: @bg_node;
+        }
+
+        &.last {
+            background: @bg_last;
+        }
+
+        &.root {
+            background: none;
+            padding: 0;
+        }
+
+		&.activePath {
+			background: @dotted_joint;
+		}
+    }
+
+}
+
+#hierarchyViewer {
+
+		div.helpWrapper {
+			float: right;
+			position: relative;
+		}
+
+		span.contextualHelp {
+			width: 29px;
+			height: 29px;
+			margin-left: 19px;
+			margin-bottom: 5px;
+			background-position: 0 0;
+		}
+
+		div.tooltip {
+			position: absolute;
+			left: -100px;
+			
+			margin: 0px auto 0 auto;
+			color: @copy;
+			font-size: @font_15;
+
+			width:150px;
+
+			background-position: right -24px;
+			.boxShadow(2px 2px 10px rbga(0,0,0,0.2));
+
+			div.inner {
+				background-color: white;
+				border: 1px solid #999;
+				border-top: none;
+			}
+
+			display: none;
+
+			span.definition {
+				display:block;
+				margin: 16px 10px 16px 10px;
+			}
+
+			span.branchType {
+				margin-right: 8px;
+			}
+
+			span.branchType.expandable {
+				background: @node_background_color url("/Content/themes/base/icons/advanced_search_parent_node_default.png");
+			}
+
+			span.branchType.expanded {
+				background: @node_background_color url("/Content/themes/base/icons/advanced_search_parent_node_open.png");
+			}
+
+			span.branchType.highlighted {
+				outline-offset: 3px;
+				outline: 1px solid #CCC;
+			}
+
+			span.branchType.leaf {
+				margin: 2px 11px 2px 3px;
+				width: 16px;
+				height: 16px;
+				background: transparent url("/Content/themes/base/icons/hierarchy_leaf.png") no-repeat;
+				.boxShadow(none);
+			}
+		}	
+}
+
+
+
+
+ .branchType {
+        display: block;
+        float: left;
+        margin-right: 5px;
+        width: 20px;
+        height: 20px;
+
+        background: url("/Content/themes/base/icons/advanced_search_empty_node.png") no-repeat;
+		.boxShadow(1px 1px 2px rgba(0,0,0,0.5));
+    }
+
+	li.aggregationEntity > .box > .branchType {
+        background: @node_background_color url("/Content/themes/base/icons/advanced_search_parent_node_open.png");
+    }
+
+	li.aggregationEntity.moreHidden > .box > a.branchType {
+        background-image: url("/Content/themes/base/icons/advanced_search_parent_node_default.png");
+		&:hover {
+			background-image: url("/Content/themes/base/icons/advanced_search_parent_node_over.png");
+		}
+    }
+
+	li.aggregationEntity.lastExited > .box > .branchType {
+		outline-offset: 3px;
+		outline: 1px solid #CCC;
+    }
+
+	li.leaf > .box > .branchType {
+		.boxShadow(none);
+    }

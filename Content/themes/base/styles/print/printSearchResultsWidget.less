@@ -1,0 +1,102 @@
+﻿// default widget style
+div.searchResultsWidget {
+    div.searchResults {
+        clear: both;
+        div.facetPreviewButton {
+            display: none;
+        }
+
+        ul.types {
+            display: none;
+        }
+    }
+
+    div.toggleCluster {
+        display: none;
+    }
+
+    /*div.journeyTracker {
+        display: none;
+    }*/
+}
+
+.loader {
+    display: none;
+}
+
+.headerWarning {
+    display: none;
+}
+
+#advancedSearchContents .advancedSearchResults {
+    hr {
+        display: none;
+    }
+
+    .toggleCluster {
+        display: none;
+    }
+
+    #resultsWrapper .paginatorWidget {
+        display: none;
+    }
+
+    #mainActions {
+        display: none;
+    }
+
+    .searchResults {
+        clear: both;
+
+        li.item {
+            clear: both;
+            min-height: 0;
+
+            .title {
+                margin-left: 0px;
+            }
+            .subtitle {
+                margin-left: 0px;
+                color: #383835;
+            }
+            .matches {
+                margin-left: 25px;
+                margin-bottom: 1em;
+            }
+
+            .thumbnail {
+                position: relative;
+                float: right;
+                margin-right: -90px;
+                width: auto;
+                height: auto;
+
+                img {
+                    width: auto;
+                    height: auto;
+                    max-width: 100px;
+                }
+            }
+
+            .information {
+                display: none;
+            }
+        }
+
+        .clustered li.item {
+            padding-left: 25px;
+
+            .clusterHead {
+                .matches {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .facetResults {
+        height: 0;
+        width: 0;
+        overflow: hidden;
+    }
+}

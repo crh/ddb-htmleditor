@@ -1,0 +1,129 @@
+﻿@import "less.less";
+
+html, body {
+    height: 100%;
+
+	&.ie7 {
+	
+		overflow-x: hidden;
+		overflow-y: auto;
+	
+	}
+
+}
+
+body {
+    margin: 0;
+    padding: 0 0;
+
+    font-family: @font_stack;
+    background: #fff;
+}
+
+// declare html5 elements as block level
+header, nav, section, article, footer {
+    display: block;
+}
+
+// links
+a {
+    color: @link;
+    text-decoration: none;
+	
+	&:hover, &:active, &:focus {
+        text-decoration: underline;
+		color: @link_active;
+    }
+
+    &.arrow {
+        padding-left: 17px;
+        background: url("/Content/themes/base/icons/arrows.png") no-repeat;
+    }
+
+    &.arrow-back {
+        background-position:  0 -153px;
+    }
+
+    &.arrow-next {
+        background-position:  0 -55px;
+    }
+
+}
+
+// headings
+
+h1, h2, h3, h4 {
+    line-height: 1.5em;
+}
+
+h1, h1 a {
+    font-family: @web_font_stack;
+    font-size: @font_28;
+    font-weight: normal;
+    color: @copy;
+}
+
+h2, h2 a {
+    font-family: @web_font_stack;
+    font-weight: bold;
+    font-size: @font_22;
+    color: @heading;
+}
+
+h3, h3 a {
+    font-family: @font_stack;
+    font-weight: bold;
+    font-size: @font_18;
+    color: @copy;
+}
+
+b {
+    color: @copy;
+}
+
+hr {
+    clear: both;
+    border: none;
+    height: 2px;
+    color: @extraLightBackground;
+    background: @extraLightBackground;
+    margin: 10px 0;
+}
+
+hr.thick {
+    height: 5px;
+}
+
+hr.thin {
+    height: 1px;
+}
+
+img {
+    border: 0;
+    margin: 15px;
+}
+
+.inlineBox {
+    padding: 10px;
+    margin: 15px;
+    width: 300px;
+    border: 1px solid @extraLightBackground;
+    font-style: italic;
+}
+
+.floatLeft {
+    float: left;
+}
+img.floatLeft,
+.inlineBox.floatLeft {
+    margin-left: 0;
+}
+
+.floatRight {
+    float: right;
+}
+img.floatRight,
+.inlineBox.floatRight {
+    margin-right: 0;
+}
+
